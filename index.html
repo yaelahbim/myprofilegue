@@ -1,0 +1,2812 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arya Bima Rozak — Frontend Developer & Visual Designer</title>
+  <meta name="description" content="Portofolio pribadi Arya Bima Rozak (masbima.my.id) — Lulusan S.Kom Sistem Informasi UBSI, Frontend Developer & Visual Designer berbasis di Depok, Jawa Barat." />
+  <link id="dynamicFavicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111827'/%3E%3Ctext x='28' y='44' text-anchor='middle' fill='%23FAFAFA' font-family='Inter,Arial,sans-serif' font-size='34' font-weight='800'%3EB%3C/text%3E%3Ccircle cx='48' cy='41' r='5' fill='%23E11D48'/%3E%3C/svg%3E" />
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Supabase JS SDK v2 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            swissBg: '#FAFAFA',
+            swissSurface: '#FFFFFF',
+            swissDark: '#0F172A',
+            swissDarkCard: '#1E293B',
+            swissRed: '#E11D48',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-page: #FAFAFA;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #F4F4F5;
+      --text-primary: #111827;
+      --text-secondary: #4B5563;
+      --border-hairline: #E4E4E7;
+      --border-strong: #18181B;
+      --accent-red: #E11D48;
+    }
+
+    html.dark {
+      --bg-page: #0B0F19;
+      --bg-card: #111827;
+      --bg-subtle: #1F2937;
+      --text-primary: #F9FAFB;
+      --text-secondary: #9CA3AF;
+      --border-hairline: #27272A;
+      --border-strong: #E4E4E7;
+      --accent-red: #E11D48;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .swiss-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .swiss-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.08);
+    }
+
+    html.dark .swiss-card:hover {
+      box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.45);
+    }
+
+    .swiss-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .hairline-b { border-bottom: 1px solid var(--border-hairline); }
+    .hairline-t { border-top: 1px solid var(--border-hairline); }
+    .hairline-r { border-right: 1px solid var(--border-hairline); }
+    .hairline-all { border: 1px solid var(--border-hairline); }
+
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-page); }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+    html.dark ::-webkit-scrollbar-thumb { background: #334155; }
+  </style>
+</head>
+<body class="selection:bg-swissRed selection:text-white">
+
+  <!-- =====================================================================
+       PUBLIC PORTFOLIO VIEW
+  ===================================================================== -->
+  <div id="publicApp">
+    <!-- 1. NAVBAR STICKY BERSIH -->
+    <header class="sticky top-0 z-40 bg-[#FAFAFA]/90 dark:bg-[#0B0F19]/90 backdrop-blur-md hairline-b">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 sm:h-18">
+          <a href="#beranda" id="navBrandLogo" class="flex items-center gap-1.5 text-xl font-extrabold tracking-tight focus:outline-none">
+            <span>Arya Bima</span><span class="text-swissRed">.</span>
+          </a>
+
+          <nav aria-label="Navigasi Utama" class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-600 dark:text-gray-300">
+            <a href="#tentang" class="hover:text-swissRed transition-colors">Tentang</a>
+            <a href="#keahlian" class="hover:text-swissRed transition-colors">Keahlian</a>
+            <a href="#proyek" class="hover:text-swissRed transition-colors">Proyek</a>
+            <a href="#pengalaman" class="hover:text-swissRed transition-colors">Pengalaman</a>
+            <a href="#kontak" class="hover:text-swissRed transition-colors">Kontak</a>
+          </nav>
+
+          <div class="flex items-center gap-2">
+            <button
+              id="themeToggle"
+              type="button"
+              aria-label="Ganti mode terang atau gelap"
+              class="p-2.5 rounded-lg hairline-all bg-white dark:bg-gray-900 hover:border-gray-900 dark:hover:border-gray-300 transition-colors"
+            >
+              <svg id="sunIcon" class="w-4 h-4 hidden text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+              </svg>
+              <svg id="moonIcon" class="w-4 h-4 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              onclick="openAdminView()"
+              class="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-lg hairline-all bg-white dark:bg-gray-900 hover:border-swissRed hover:text-swissRed text-xs font-mono font-semibold transition-colors"
+              title="Masuk ke Admin Panel CMS"
+            >
+              <svg class="w-3.5 h-3.5 text-swissRed" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>Admin</span>
+            </button>
+
+            <a
+              href="#kontak"
+              class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-gray-900 text-white dark:bg-white dark:text-gray-900 hover:bg-swissRed dark:hover:bg-swissRed dark:hover:text-white text-sm font-semibold transition-colors"
+            >
+              Hubungi Saya
+            </a>
+
+            <button
+              id="mobileMenuBtn"
+              type="button"
+              aria-label="Buka menu navigasi"
+              aria-expanded="false"
+              class="md:hidden p-2.5 rounded-lg hairline-all bg-white dark:bg-gray-900"
+            >
+              <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+              <svg id="closeMenuIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden pb-5 pt-2 hairline-t space-y-1">
+          <a href="#tentang" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Tentang</a>
+          <a href="#keahlian" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Keahlian</a>
+          <a href="#proyek" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Proyek</a>
+          <a href="#pengalaman" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Pengalaman</a>
+          <a href="#kontak" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Kontak</a>
+          <div class="pt-2 px-3 flex gap-2">
+            <a href="#kontak" class="mobile-link flex-1 text-center py-2.5 rounded-lg bg-swissRed text-white text-sm font-semibold">
+              Hubungi Saya
+            </a>
+            <button type="button" onclick="openAdminView()" class="px-4 py-2.5 rounded-lg hairline-all text-xs font-mono font-semibold">
+              Admin CMS
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="beranda">
+      <!-- 2. HERO SECTION -->
+      <section class="py-12 sm:py-20 lg:py-24 hairline-b">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full hairline-all bg-white dark:bg-gray-900 text-xs font-mono font-medium">
+                <span class="w-2 h-2 rounded-full bg-swissRed animate-pulse"></span>
+                <span id="heroBadgeText">Tersedia untuk Proyek &amp; Kolaborasi</span>
+              </div>
+
+              <h1 id="heroHeadline" class="text-3xl sm:text-5xl lg:text-[3.35rem] font-extrabold tracking-tight leading-[1.12]">
+                Halo, saya <span class="underline decoration-swissRed decoration-4 underline-offset-4">Arya Bima Rozak</span> — Frontend Developer &amp; Visual Designer
+              </h1>
+
+              <p id="heroSubheadline" class="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
+                Saya merancang dan membangun website modern yang cepat, responsif, serta sistem visual yang rapi dan komunikatif. Menggabungkan latar belakang teknis Sistem Informasi dengan kepekaan desain editorial untuk menghasilkan solusi digital yang fungsional.
+              </p>
+
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
+                <a
+                  href="#proyek"
+                  class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-sm font-semibold transition-colors"
+                >
+                  <span>Lihat Proyek</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </a>
+                <a
+                  href="#kontak"
+                  class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg hairline-all bg-white dark:bg-gray-900 hover:border-gray-900 dark:hover:border-gray-200 text-sm font-semibold transition-colors"
+                >
+                  <span>Unduh CV / Kontak</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </a>
+              </div>
+
+              <div id="heroSocialLinks" class="pt-3 flex flex-wrap items-center gap-3"></div>
+            </div>
+
+            <!-- Kolom Kanan: Kartu Profil -->
+            <div class="lg:col-span-5">
+              <div class="swiss-card rounded-2xl p-6 sm:p-7 relative overflow-hidden">
+                <div class="flex items-center justify-between pb-5 hairline-b">
+                  <span class="font-mono text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                    PROFIL PROFESIONAL
+                  </span>
+                  <span id="cardDegreeBadge" class="px-2.5 py-1 rounded-md bg-rose-50 dark:bg-rose-950/50 text-swissRed font-mono text-xs font-semibold">
+                    S.Kom • UBSI
+                  </span>
+                </div>
+
+                <div class="my-6 flex items-center gap-5">
+                  <div id="cardAvatarWrapper" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex flex-col items-center justify-center shrink-0 relative overflow-hidden">
+                    <span class="font-mono text-[10px] tracking-widest text-swissRed font-semibold">PORTFOLIO</span>
+                    <span id="cardMonogram" class="text-2xl sm:text-3xl font-extrabold tracking-tighter">ABR</span>
+                  </div>
+                  <div>
+                    <h2 id="cardFullName" class="text-xl font-bold tracking-tight">Arya Bima Rozak</h2>
+                    <p id="cardRoleTitle" class="text-sm text-gray-600 dark:text-gray-300 mt-0.5">
+                      Web Developer &amp; Visual Designer
+                    </p>
+                    <p id="cardDomainText" class="font-mono text-xs text-swissRed mt-1.5">
+                      masbima.my.id
+                    </p>
+                  </div>
+                </div>
+
+                <div class="space-y-3 pt-4 hairline-t text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-gray-500 dark:text-gray-400 flex items-center gap-2">
+                      <svg class="w-4 h-4 text-swissRed" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      Lokasi
+                    </span>
+                    <span id="cardLocationText" class="font-semibold text-right">Depok, Jawa Barat</span>
+                  </div>
+
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-gray-500 dark:text-gray-400 flex items-center gap-2">
+                      <svg class="w-4 h-4 text-swissRed" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                      </svg>
+                      Pendidikan
+                    </span>
+                    <span id="cardEducationText" class="font-semibold text-right">Sistem Informasi (UBSI)</span>
+                  </div>
+
+                  <div class="pt-2">
+                    <span class="block text-xs font-mono uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">
+                      Tech Stack Utama
+                    </span>
+                    <div id="cardPrimaryStack" class="flex flex-wrap gap-1.5"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. TENTANG SAYA & STATISTIK -->
+      <section id="tentang" class="py-16 sm:py-24 hairline-b">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            <div class="lg:col-span-7 space-y-5">
+              <div class="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-widest text-swissRed">
+                <span>01 / TENTANG SAYA</span>
+              </div>
+              <h2 id="aboutHeading" class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                Menjembatani logika rekayasa web dengan estetika desain yang bersih.
+              </h2>
+              <p id="aboutParagraph1" class="text-base text-gray-600 dark:text-gray-300 leading-relaxed"></p>
+              <p id="aboutParagraph2" class="text-base text-gray-600 dark:text-gray-300 leading-relaxed"></p>
+            </div>
+
+            <div id="statsGrid" class="lg:col-span-5 grid grid-cols-2 gap-4"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. KEAHLIAN / TECH STACK -->
+      <section id="keahlian" class="py-16 sm:py-24 hairline-b">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-2xl mb-10 sm:mb-12">
+            <div class="font-mono text-xs font-semibold uppercase tracking-widest text-swissRed mb-2">
+              02 / KEAHLIAN &amp; TECH STACK
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+              Perangkat dan Teknologi yang Saya Gunakan
+            </h2>
+            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-2">
+              Kombinasi teknologi pengembangan web modern, infrastruktur cloud, desain visual, dan pengolahan data operasional.
+            </p>
+          </div>
+
+          <div id="skillsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </div>
+      </section>
+
+      <!-- 5. PROYEK PILIHAN -->
+      <section id="proyek" class="py-16 sm:py-24 hairline-b">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
+            <div>
+              <div class="font-mono text-xs font-semibold uppercase tracking-widest text-swissRed mb-2">
+                03 / PROYEK PILIHAN
+              </div>
+              <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+                Karya &amp; Studi Kasus Terbaru
+              </h2>
+            </div>
+
+            <div id="projectFilterBar" class="flex flex-wrap gap-2" role="tablist" aria-label="Filter Proyek"></div>
+          </div>
+
+          <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+      </section>
+
+      <!-- 6. PENGALAMAN & PENDIDIKAN -->
+      <section id="pengalaman" class="py-16 sm:py-24 hairline-b">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-2xl mb-12">
+            <div class="font-mono text-xs font-semibold uppercase tracking-widest text-swissRed mb-2">
+              04 / PERJALANAN KARIER &amp; AKADEMIK
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+              Pengalaman &amp; Pendidikan
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
+            <div>
+              <h3 class="text-lg font-bold pb-4 hairline-b flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-swissRed"></span>
+                <span>Pengalaman Kerja &amp; Proyek</span>
+              </h3>
+              <div id="experienceTimeline" class="relative pl-6 border-l border-gray-300 dark:border-gray-700 mt-6 space-y-8"></div>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold pb-4 hairline-b flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-gray-900 dark:bg-white"></span>
+                <span>Riwayat Pendidikan &amp; Kompetensi</span>
+              </h3>
+              <div id="educationTimeline" class="relative pl-6 border-l border-gray-300 dark:border-gray-700 mt-6 space-y-8"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. KONTAK -->
+      <section id="kontak" class="py-16 sm:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+            <div class="lg:col-span-5 space-y-6">
+              <div>
+                <div class="font-mono text-xs font-semibold uppercase tracking-widest text-swissRed mb-2">
+                  05 / HUBUNGI SAYA
+                </div>
+                <h2 id="contactHeading" class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+                  Mari Berdiskusi &amp; Berkolaborasi
+                </h2>
+                <p id="contactSubheading" class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-3 leading-relaxed">
+                  Tertarik bekerja sama untuk pembuatan website, kebutuhan desain visual, atau peluang karier? Silakan hubungi saya melalui kontak langsung atau kirim pesan melalui formulir di samping.
+                </p>
+              </div>
+
+              <div class="space-y-3 pt-2">
+                <div class="swiss-card rounded-xl p-4 flex items-center justify-between gap-3">
+                  <div class="min-w-0">
+                    <span class="block font-mono text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400">Email Resmi</span>
+                    <span id="contactEmailDisplay" class="block text-sm font-semibold truncate mt-0.5">aryabimarozak@gmail.com</span>
+                  </div>
+                  <button
+                    id="copyEmailBtn"
+                    type="button"
+                    class="shrink-0 px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors"
+                  >
+                    Salin
+                  </button>
+                </div>
+
+                <div class="swiss-card rounded-xl p-4 flex items-center justify-between gap-3">
+                  <div class="min-w-0">
+                    <span class="block font-mono text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400">Website Portofolio</span>
+                    <span id="contactDomainDisplay" class="block text-sm font-semibold truncate mt-0.5 text-swissRed">masbima.my.id</span>
+                  </div>
+                  <button
+                    id="copyDomainBtn"
+                    type="button"
+                    class="shrink-0 px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors"
+                  >
+                    Salin
+                  </button>
+                </div>
+
+                <div class="swiss-card rounded-xl p-4 flex items-center justify-between gap-3">
+                  <div>
+                    <span class="block font-mono text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400">WhatsApp</span>
+                    <span id="contactWaNote" class="block text-sm font-semibold mt-0.5">Respon Cepat (Jam Kerja WIB)</span>
+                  </div>
+                  <a
+                    id="contactWaLink"
+                    href="https://wa.me/?text=Halo%20Arya%20Bima%20Rozak%2C%20saya%20tertarik%20berdiskusi%20mengenai%20proyek%2Fkolaborasi."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="shrink-0 px-3 py-1.5 rounded-lg bg-swissRed text-white text-xs font-mono font-semibold hover:bg-rose-700 transition-colors"
+                  >
+                    Chat ↗
+                  </a>
+                </div>
+
+                <div class="swiss-card rounded-xl p-4">
+                  <span class="block font-mono text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400">Domisili</span>
+                  <span id="contactLocationDisplay" class="block text-sm font-semibold mt-0.5">Depok, Jawa Barat, Indonesia</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7">
+              <div class="swiss-card rounded-2xl p-6 sm:p-8">
+                <h3 class="text-lg font-bold mb-1">Kirim Pesan Langsung</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                  Pesan Anda otomatis tersimpan ke kotak masuk Admin Panel (dan Supabase jika aktif).
+                </p>
+
+                <form id="contactForm" class="space-y-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label for="inputNama" class="block text-xs font-mono uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1.5">
+                        Nama Lengkap *
+                      </label>
+                      <input
+                        id="inputNama"
+                        type="text"
+                        required
+                        placeholder="Masukkan nama Anda"
+                        class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
+                      />
+                    </div>
+                    <div>
+                      <label for="inputEmail" class="block text-xs font-mono uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1.5">
+                        Alamat Email *
+                      </label>
+                      <input
+                        id="inputEmail"
+                        type="email"
+                        required
+                        placeholder="nama@perusahaan.com"
+                        class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="inputSubjek" class="block text-xs font-mono uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1.5">
+                      Subjek *
+                    </label>
+                    <input
+                      id="inputSubjek"
+                      type="text"
+                      required
+                      placeholder="Contoh: Pembuatan Website Perusahaan / Peluang Kerja"
+                      class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="inputPesan" class="block text-xs font-mono uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1.5">
+                      Pesan *
+                    </label>
+                    <textarea
+                      id="inputPesan"
+                      rows="4"
+                      required
+                      placeholder="Tuliskan detail kebutuhan proyek atau pesan Anda..."
+                      class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
+                    ></textarea>
+                  </div>
+
+                  <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <button
+                      type="submit"
+                      id="contactSubmitBtn"
+                      class="px-6 py-3.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-sm font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                    >
+                      <span>Kirim Pesan</span>
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                      </svg>
+                    </button>
+                    <span class="text-xs text-gray-500 dark:text-gray-400">
+                      Email: <strong id="contactFooterEmailHint" class="font-mono">aryabimarozak@gmail.com</strong>
+                    </span>
+                  </div>
+                </form>
+
+                <div id="formConfirmation" class="hidden mt-6 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-sm">
+                  <p class="font-bold text-emerald-800 dark:text-emerald-300">
+                    Terima kasih! Pesan Anda berhasil tercatat.
+                  </p>
+                  <p class="text-emerald-700 dark:text-emerald-400 mt-1" id="confirmationDetail"></p>
+                  <div class="mt-3 flex flex-wrap gap-2">
+                    <a
+                      id="mailtoFallbackLink"
+                      href="mailto:aryabimarozak@gmail.com"
+                      class="px-3.5 py-1.5 rounded-lg bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-xs font-semibold"
+                    >
+                      Kirim Juga via Email ↗
+                    </a>
+                    <button
+                      id="resetFormBtn"
+                      type="button"
+                      class="px-3.5 py-1.5 rounded-lg hairline-all text-xs font-semibold"
+                    >
+                      Tulis Pesan Baru
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="hairline-t py-8 bg-white dark:bg-[#0B0F19]">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+        <div class="flex items-center gap-2">
+          <span id="footerBrandText" class="font-extrabold text-gray-900 dark:text-white">Arya Bima<span class="text-swissRed">.</span></span>
+          <span>•</span>
+          <span id="footerCopyrightText">© 2026 Arya Bima Rozak. Hak cipta dilindungi.</span>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-5 text-xs font-mono">
+          <a href="#tentang" class="hover:text-swissRed transition-colors">Tentang</a>
+          <a href="#keahlian" class="hover:text-swissRed transition-colors">Keahlian</a>
+          <a href="#proyek" class="hover:text-swissRed transition-colors">Proyek</a>
+          <a href="#pengalaman" class="hover:text-swissRed transition-colors">Pengalaman</a>
+          <button type="button" onclick="openAdminView()" class="hover:text-swissRed transition-colors">Admin CMS</button>
+          <a href="#beranda" class="text-swissRed font-semibold hover:underline">Ke Atas ↑</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- =====================================================================
+       ADMIN PANEL CMS VIEW
+  ===================================================================== -->
+  <div id="adminApp" class="hidden min-h-screen bg-[#FAFAFA] dark:bg-[#0B0F19]">
+    <header class="sticky top-0 z-40 bg-white/95 dark:bg-gray-950/95 backdrop-blur-md hairline-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="font-extrabold text-lg tracking-tight">Arya Bima<span class="text-swissRed">.</span></span>
+          <span class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950/60 text-swissRed font-mono text-[11px] font-semibold">
+            CMS ADMIN
+          </span>
+          <span id="adminCloudStatusBadge" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md hairline-all font-mono text-[11px]">
+            <span id="adminCloudStatusDot" class="w-2 h-2 rounded-full bg-amber-500"></span>
+            <span id="adminCloudStatusLabel">Mode Preview Lokal</span>
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            onclick="toggleTheme()"
+            aria-label="Ganti tema"
+            class="p-2 rounded-lg hairline-all hover:border-gray-900 dark:hover:border-gray-300 text-xs font-mono"
+          >
+            Tema
+          </button>
+          <button
+            type="button"
+            onclick="closeAdminView()"
+            class="px-3.5 py-2 rounded-lg hairline-all bg-white dark:bg-gray-900 hover:border-gray-900 dark:hover:border-gray-200 text-xs font-semibold transition-colors"
+          >
+            ← Lihat Website
+          </button>
+          <button
+            id="adminLogoutBtn"
+            type="button"
+            onclick="handleAdminLogout()"
+            class="hidden px-3.5 py-2 rounded-lg bg-gray-900 text-white dark:bg-white dark:text-gray-900 hover:bg-swissRed dark:hover:bg-swissRed dark:hover:text-white text-xs font-semibold transition-colors"
+          >
+            Keluar
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- SCREEN A: LOGIN ADMIN -->
+    <div id="adminLoginScreen" class="max-w-md mx-auto px-4 py-12 sm:py-20">
+      <div class="swiss-panel rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+        <div class="space-y-1.5">
+          <span class="font-mono text-xs uppercase tracking-widest text-swissRed font-semibold">AUTENTIKASI ADMIN</span>
+          <h1 class="text-2xl font-extrabold tracking-tight">Masuk ke Panel Kontrol</h1>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+            Kelola seluruh konten portofolio, studi kasus proyek, pengalaman, dan integrasi Supabase Cloud.
+          </p>
+        </div>
+
+        <form id="adminLoginForm" class="space-y-4">
+          <div>
+            <label for="adminEmailInput" class="block font-mono text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1.5">
+              Email Admin
+            </label>
+            <input
+              id="adminEmailInput"
+              type="email"
+              required
+              placeholder="admin@domain.com"
+              class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
+            />
+          </div>
+          <div>
+            <label for="adminPasswordInput" class="block font-mono text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1.5">
+              Kata Sandi Admin
+            </label>
+            <input
+              id="adminPasswordInput"
+              type="password"
+              required
+              placeholder="Masukkan kata sandi"
+              class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
+            />
+          </div>
+
+          <button
+            type="submit"
+            id="adminLoginSubmitBtn"
+            class="w-full py-3 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-sm font-semibold transition-colors"
+          >
+            Masuk ke Dashboard
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- SCREEN B: DASHBOARD ADMIN LENGKAP -->
+    <div id="adminDashboardScreen" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <aside class="lg:col-span-3 lg:sticky lg:top-22">
+          <div class="swiss-panel rounded-xl p-2 sm:p-3">
+            <div class="hidden lg:block px-3 py-2 mb-1 hairline-b">
+              <span class="font-mono text-[11px] uppercase tracking-widest text-gray-400">MODUL KONTEN</span>
+            </div>
+            <nav id="adminTabNav" class="flex lg:flex-col gap-1 overflow-x-auto no-scrollbar" aria-label="Navigasi Admin">
+              <button type="button" data-admin-tab="profile" class="admin-nav-btn active shrink-0 text-left px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-gray-900 text-white dark:bg-white dark:text-gray-900 transition-colors">
+                01. Profil &amp; Hero
+              </button>
+              <button type="button" data-admin-tab="stats" class="admin-nav-btn shrink-0 text-left px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                02. Statistik &amp; Tentang
+              </button>
+              <button type="button" data-admin-tab="skills" class="admin-nav-btn shrink-0 text-left px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                03. Keahlian &amp; Stack
+              </button>
+              <button type="button" data-admin-tab="projects" class="admin-nav-btn shrink-0 text-left px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                04. Proyek &amp; Studi Kasus
+              </button>
+              <button type="button" data-admin-tab="timeline" class="admin-nav-btn shrink-0 text-left px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                05. Pengalaman &amp; Edukasi
+              </button>
+              <button type="button" data-admin-tab="contact" class="admin-nav-btn shrink-0 text-left px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-between gap-2">
+                <span>06. Kontak &amp; Pesan</span>
+                <span id="unreadMsgCountBadge" class="px-1.5 py-0.5 rounded bg-swissRed text-white font-mono text-[10px]">0</span>
+              </button>
+              <button type="button" data-admin-tab="supabase" class="admin-nav-btn shrink-0 text-left px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-swissRed font-semibold">
+                07. Koneksi Supabase &amp; SQL
+              </button>
+            </nav>
+          </div>
+        </aside>
+
+        <section class="lg:col-span-9 space-y-6">
+          <!-- TAB 01: PROFIL & HERO -->
+          <div id="tab-profile" class="admin-tab-panel swiss-panel rounded-2xl p-5 sm:p-7 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 hairline-b">
+              <div>
+                <span class="font-mono text-xs text-swissRed uppercase tracking-wider">MODUL 01</span>
+                <h2 class="text-xl font-extrabold">Profil Utama, Hero &amp; Tautan Sosial</h2>
+              </div>
+              <button type="button" onclick="saveProfileSection()" class="px-5 py-2.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold transition-colors">
+                Simpan Perubahan Profil
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Nama Brand (Navbar)</label>
+                <input id="editBrandName" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Nama Lengkap</label>
+                <input id="editFullName" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Peran / Jabatan Utama</label>
+                <input id="editRoleTitle" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Monogram Kartu (Maks 3 Huruf)</label>
+                <input id="editMonogram" type="text" maxlength="4" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-mono" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">URL Foto Profil (Opsional)</label>
+                <input id="editAvatarUrl" type="url" placeholder="https://..." class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Badge Status Hero</label>
+                <input id="editBadgeText" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Domain Aktif</label>
+                <input id="editDomain" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-mono" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Badge Gelar / Kampus</label>
+                <input id="editDegreeBadge" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-mono" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Lokasi</label>
+                <input id="editLocation" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Pendidikan Ringkas</label>
+                <input id="editEducationSummary" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+              </div>
+            </div>
+
+            <div class="pt-4 hairline-t space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-bold">Pengaturan Favicon (Ikon Tab Browser)</h3>
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-[11px] text-gray-400">Pratinjau:</span>
+                  <img id="faviconPreviewImg" src="" alt="Preview Favicon" class="w-7 h-7 rounded-md hairline-all object-cover" />
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                <div>
+                  <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Huruf Favicon (1-2 Huruf)</label>
+                  <input id="editFaviconLetter" type="text" maxlength="2" placeholder="B" oninput="updateFaviconPreviewInAdmin()" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-bold uppercase" />
+                </div>
+                <div>
+                  <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Warna Latar</label>
+                  <input id="editFaviconBgColor" type="color" value="#111827" oninput="updateFaviconPreviewInAdmin()" class="w-full h-10 px-1.5 py-1 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 cursor-pointer" />
+                </div>
+                <div>
+                  <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Warna Titik Aksen</label>
+                  <input id="editFaviconAccentColor" type="color" value="#E11D48" oninput="updateFaviconPreviewInAdmin()" class="w-full h-10 px-1.5 py-1 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 cursor-pointer" />
+                </div>
+                <div>
+                  <label class="block font-mono text-xs uppercase text-gray-500 mb-1">URL Gambar Favicon (Opsional)</label>
+                  <input id="editFaviconUrl" type="url" placeholder="https://..." oninput="updateFaviconPreviewInAdmin()" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Headline Utama Hero</label>
+              <input id="editHeroHeadline" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-semibold" />
+            </div>
+
+            <div>
+              <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Sub-headline / Deskripsi Hero</label>
+              <textarea id="editHeroSubheadline" rows="3" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm"></textarea>
+            </div>
+
+            <div>
+              <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Tech Stack Utama Kartu Profil (Pisahkan dengan koma)</label>
+              <input id="editPrimaryStack" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-mono" />
+            </div>
+
+            <div class="pt-4 hairline-t">
+              <h3 class="text-sm font-bold mb-3">Tautan Media Sosial</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label class="block font-mono text-xs uppercase text-gray-500 mb-1">URL GitHub</label>
+                  <input id="editGithubUrl" type="url" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+                </div>
+                <div>
+                  <label class="block font-mono text-xs uppercase text-gray-500 mb-1">URL LinkedIn</label>
+                  <input id="editLinkedinUrl" type="url" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+                </div>
+                <div>
+                  <label class="block font-mono text-xs uppercase text-gray-500 mb-1">URL Instagram</label>
+                  <input id="editInstagramUrl" type="url" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 02: TENTANG & STATISTIK -->
+          <div id="tab-stats" class="admin-tab-panel hidden swiss-panel rounded-2xl p-5 sm:p-7 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 hairline-b">
+              <div>
+                <span class="font-mono text-xs text-swissRed uppercase tracking-wider">MODUL 02</span>
+                <h2 class="text-xl font-extrabold">Narasi Tentang Saya &amp; Kartu Statistik</h2>
+              </div>
+              <button type="button" onclick="saveAboutAndStats()" class="px-5 py-2.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold transition-colors">
+                Simpan Tentang &amp; Statistik
+              </button>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Judul Bagian Tentang Saya</label>
+                <input id="editAboutHeading" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-semibold" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Paragraf 1</label>
+                <textarea id="editAboutP1" rows="3" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm"></textarea>
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Paragraf 2</label>
+                <textarea id="editAboutP2" rows="3" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm"></textarea>
+              </div>
+            </div>
+
+            <div class="pt-4 hairline-t space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-bold">Kartu Statistik Dampak</h3>
+                <button type="button" onclick="addStatItem()" class="px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:border-swissRed hover:text-swissRed">
+                  + Tambah Statistik
+                </button>
+              </div>
+              <div id="adminStatsList" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+            </div>
+          </div>
+
+          <!-- TAB 03: KEAHLIAN & TECH STACK -->
+          <div id="tab-skills" class="admin-tab-panel hidden swiss-panel rounded-2xl p-5 sm:p-7 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 hairline-b">
+              <div>
+                <span class="font-mono text-xs text-swissRed uppercase tracking-wider">MODUL 03</span>
+                <h2 class="text-xl font-extrabold">Kategori Keahlian &amp; Perangkat</h2>
+              </div>
+              <div class="flex gap-2">
+                <button type="button" onclick="addSkillCategory()" class="px-4 py-2.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:border-swissRed">
+                  + Kategori Baru
+                </button>
+                <button type="button" onclick="saveSkillsSection()" class="px-5 py-2.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold">
+                  Simpan Semua Keahlian
+                </button>
+              </div>
+            </div>
+
+            <div id="adminSkillsList" class="space-y-4"></div>
+          </div>
+
+          <!-- TAB 04: PROYEK & STUDI KASUS -->
+          <div id="tab-projects" class="admin-tab-panel hidden swiss-panel rounded-2xl p-5 sm:p-7 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 hairline-b">
+              <div>
+                <span class="font-mono text-xs text-swissRed uppercase tracking-wider">MODUL 04</span>
+                <h2 class="text-xl font-extrabold">Manajemen Proyek &amp; Studi Kasus</h2>
+              </div>
+              <button type="button" onclick="openProjectEditorModal()" class="px-5 py-2.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold">
+                + Tambah Proyek Baru
+              </button>
+            </div>
+
+            <div id="adminProjectsList" class="space-y-3"></div>
+          </div>
+
+          <!-- TAB 05: PENGALAMAN & PENDIDIKAN -->
+          <div id="tab-timeline" class="admin-tab-panel hidden swiss-panel rounded-2xl p-5 sm:p-7 space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 hairline-b">
+              <div>
+                <span class="font-mono text-xs text-swissRed uppercase tracking-wider">MODUL 05</span>
+                <h2 class="text-xl font-extrabold">Pengalaman Kerja &amp; Pendidikan</h2>
+              </div>
+              <button type="button" onclick="saveTimelineSection()" class="px-5 py-2.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold">
+                Simpan Linimasa
+              </button>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-base font-bold">Pengalaman Kerja &amp; Proyek</h3>
+                <button type="button" onclick="addTimelineItem('experience')" class="px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:border-swissRed">
+                  + Tambah Pengalaman
+                </button>
+              </div>
+              <div id="adminExperienceList" class="space-y-4"></div>
+            </div>
+
+            <div class="pt-6 hairline-t space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-base font-bold">Riwayat Pendidikan &amp; Kompetensi</h3>
+                <button type="button" onclick="addTimelineItem('education')" class="px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:border-swissRed">
+                  + Tambah Pendidikan
+                </button>
+              </div>
+              <div id="adminEducationList" class="space-y-4"></div>
+            </div>
+          </div>
+
+          <!-- TAB 06: KONTAK & KOTAK MASUK PESAN -->
+          <div id="tab-contact" class="admin-tab-panel hidden swiss-panel rounded-2xl p-5 sm:p-7 space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 hairline-b">
+              <div>
+                <span class="font-mono text-xs text-swissRed uppercase tracking-wider">MODUL 06</span>
+                <h2 class="text-xl font-extrabold">Pengaturan Kontak &amp; Kotak Masuk</h2>
+              </div>
+              <button type="button" onclick="saveContactSettings()" class="px-5 py-2.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold">
+                Simpan Info Kontak
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Judul Bagian Kontak</label>
+                <input id="editContactHeading" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-semibold" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Email Resmi</label>
+                <input id="editContactEmail" type="email" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-mono" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Nomor WhatsApp (Format 628xxx)</label>
+                <input id="editContactWaNumber" type="text" placeholder="6281234567890" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-mono" />
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Keterangan Respon WhatsApp</label>
+                <input id="editContactWaNote" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Deskripsi Kontak</label>
+                <textarea id="editContactSubheading" rows="2" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm"></textarea>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Teks Copyright Footer</label>
+                <input id="editFooterCopyright" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+              </div>
+            </div>
+
+            <div class="pt-6 hairline-t space-y-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="text-base font-bold">Pesan Masuk Pengunjung</h3>
+                  <p class="text-xs text-gray-500">Pesan yang dikirim melalui formulir kontak website akan muncul di sini.</p>
+                </div>
+                <button type="button" onclick="refreshInboxMessages()" class="px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:border-swissRed">
+                  Muat Ulang
+                </button>
+              </div>
+              <div id="adminInboxList" class="space-y-3"></div>
+            </div>
+          </div>
+
+          <!-- TAB 07: KONEKSI SUPABASE & SETUP SQL -->
+          <div id="tab-supabase" class="admin-tab-panel hidden swiss-panel rounded-2xl p-5 sm:p-7 space-y-6">
+            <div class="pb-4 hairline-b">
+              <span class="font-mono text-xs text-swissRed uppercase tracking-wider">MODUL 07 — INTEGRASI CLOUD</span>
+              <h2 class="text-xl font-extrabold">Konfigurasi Database Supabase &amp; Skema SQL</h2>
+              <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                Hubungkan proyek Supabase Anda agar seluruh perubahan di Admin Panel tersimpan online secara real-time dan dapat diakses dari perangkat mana pun.
+              </p>
+            </div>
+
+            <div class="p-4 sm:p-5 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900 space-y-4">
+              <div class="grid grid-cols-1 gap-4">
+                <div>
+                  <label class="block font-mono text-xs uppercase text-gray-600 dark:text-gray-300 mb-1">
+                    Project URL (SUPABASE_URL)
+                  </label>
+                  <input
+                    id="sbUrlInput"
+                    type="url"
+                    placeholder="https://xyzcompany.supabase.co"
+                    class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-white dark:bg-gray-950 text-sm font-mono focus:outline-none focus:border-swissRed"
+                  />
+                </div>
+                <div>
+                  <label class="block font-mono text-xs uppercase text-gray-600 dark:text-gray-300 mb-1">
+                    Anon / Publishable Public Key (SUPABASE_ANON_KEY)
+                  </label>
+                  <input
+                    id="sbAnonKeyInput"
+                    type="password"
+                    placeholder="sb_publishable_... atau eyJ..."
+                    class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-white dark:bg-gray-950 text-sm font-mono focus:outline-none focus:border-swissRed"
+                  />
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2.5 pt-1">
+                <button
+                  type="button"
+                  onclick="saveSupabaseCredentials()"
+                  class="px-4 py-2.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-xs font-semibold transition-colors"
+                >
+                  Simpan &amp; Hubungkan Supabase
+                </button>
+                <button
+                  type="button"
+                  onclick="pushAllDataToSupabase()"
+                  class="px-4 py-2.5 rounded-lg bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-xs font-semibold transition-colors"
+                >
+                  Push / Sinkronkan Semua Data ke Cloud ↑
+                </button>
+                <button
+                  type="button"
+                  onclick="disconnectSupabase()"
+                  class="px-4 py-2.5 rounded-lg hairline-all text-xs font-mono hover:border-swissRed transition-colors"
+                >
+                  Reset ke Key Bawaan
+                </button>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-bold">1. Jalankan SQL Ini di Supabase SQL Editor</h3>
+                <button
+                  type="button"
+                  onclick="copySqlSchema()"
+                  class="px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors"
+                >
+                  Salin Kode SQL
+                </button>
+              </div>
+              <pre id="supabaseSqlCode" class="p-4 rounded-xl bg-gray-950 text-gray-100 font-mono text-xs overflow-x-auto leading-relaxed">-- 1. Tabel utama penyimpan seluruh state portofolio
+CREATE TABLE IF NOT EXISTS public.portfolio_state (
+  id TEXT PRIMARY KEY DEFAULT 'main',
+  content JSONB NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- 2. Tabel kotak masuk pesan pengunjung
+CREATE TABLE IF NOT EXISTS public.portfolio_messages (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  sender_name TEXT NOT NULL,
+  sender_email TEXT NOT NULL,
+  subject TEXT NOT NULL,
+  message TEXT NOT NULL,
+  is_read BOOLEAN NOT NULL DEFAULT FALSE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- 3. Aktifkan Row Level Security (RLS)
+ALTER TABLE public.portfolio_state ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.portfolio_messages ENABLE ROW LEVEL SECURITY;
+
+-- 4. Kebijakan akses publik & admin terautentikasi
+CREATE POLICY "Publik bisa membaca konten portofolio"
+  ON public.portfolio_state FOR SELECT USING (true);
+
+CREATE POLICY "Admin bisa menyimpan konten portofolio"
+  ON public.portfolio_state FOR ALL
+  USING (auth.role() = 'authenticated')
+  WITH CHECK (auth.role() = 'authenticated');
+
+CREATE POLICY "Publik bisa mengirim pesan kontak"
+  ON public.portfolio_messages FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Admin bisa kelola pesan kontak"
+  ON public.portfolio_messages FOR ALL
+  USING (auth.role() = 'authenticated');</pre>
+            </div>
+
+            <div class="pt-4 hairline-t flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 class="text-sm font-bold">Backup &amp; Pemulihan Data JSON</h3>
+                <p class="text-xs text-gray-500">Unduh cadangan seluruh data portofolio, impor dari file JSON, atau kembalikan ke pengaturan awal.</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="exportPortfolioJson()" class="px-3.5 py-2 rounded-lg hairline-all text-xs font-mono font-semibold hover:border-gray-900">
+                  Export JSON ↓
+                </button>
+                <label class="px-3.5 py-2 rounded-lg hairline-all text-xs font-mono font-semibold hover:border-gray-900 cursor-pointer">
+                  <span>Import JSON ↑</span>
+                  <input type="file" accept=".json,application/json" onchange="importPortfolioJson(event)" class="hidden" />
+                </label>
+                <button type="button" onclick="resetToDefaultPortfolio()" class="px-3.5 py-2 rounded-lg hairline-all text-xs font-mono text-swissRed hover:border-swissRed">
+                  Reset Data Default
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL DETAIL PROYEK (PUBLIC VIEW)
+  ===================================================================== -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="modalBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"></div>
+
+    <div class="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white dark:bg-gray-900 hairline-all shadow-2xl">
+      <div class="sticky top-0 z-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md px-6 py-4 hairline-b flex items-center justify-between">
+        <span id="modalCategory" class="px-2.5 py-1 rounded-md bg-rose-50 dark:bg-rose-950/60 text-swissRed font-mono text-xs font-semibold">
+          Kategori
+        </span>
+        <button
+          id="closeModalBtn"
+          type="button"
+          aria-label="Tutup detail proyek"
+          class="p-2 rounded-lg hairline-all hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="p-6 sm:p-8 space-y-6">
+        <div id="modalMockup" class="rounded-xl overflow-hidden hairline-all bg-[#FAFAFA] dark:bg-gray-950"></div>
+
+        <div>
+          <h3 id="modalTitle" class="text-xl sm:text-2xl font-extrabold tracking-tight"></h3>
+          <p id="modalSummary" class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-2 leading-relaxed"></p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 pt-2 hairline-t">
+          <div>
+            <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-swissRed mb-1">Tantangan</h4>
+            <p id="modalChallenge" class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"></p>
+          </div>
+          <div>
+            <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-swissRed mb-1">Solusi &amp; Implementasi</h4>
+            <p id="modalSolution" class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"></p>
+          </div>
+          <div>
+            <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-swissRed mb-1">Hasil &amp; Dampak</h4>
+            <p id="modalResult" class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"></p>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">Teknologi &amp; Perangkat</h4>
+          <div id="modalTags" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <div class="pt-4 hairline-t flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <a
+            id="modalDemoLink"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-5 py-3 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-sm font-semibold text-center transition-colors"
+          >
+            Kunjungi Tautan Proyek ↗
+          </a>
+          <a
+            href="#kontak"
+            id="modalDiscussBtn"
+            class="px-5 py-3 rounded-lg hairline-all hover:border-gray-900 dark:hover:border-gray-200 text-sm font-semibold text-center transition-colors"
+          >
+            Diskusikan Proyek Serupa
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL EDITOR PROYEK (ADMIN CRUD MODAL)
+  ===================================================================== -->
+  <div id="projectEditorModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true">
+    <div onclick="closeProjectEditorModal()" class="fixed inset-0 bg-black/60 backdrop-blur-xs"></div>
+
+    <div class="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white dark:bg-gray-900 hairline-all shadow-2xl">
+      <div class="sticky top-0 z-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md px-6 py-4 hairline-b flex items-center justify-between">
+        <h3 id="projectEditorModalTitle" class="text-base font-extrabold">Tambah / Edit Proyek</h3>
+        <button type="button" onclick="closeProjectEditorModal()" class="p-2 rounded-lg hairline-all hover:bg-gray-100 dark:hover:bg-gray-800">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <form id="projectEditorForm" class="p-6 space-y-4">
+        <input type="hidden" id="projEditId" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Judul Proyek *</label>
+            <input id="projEditTitle" type="text" required class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm font-semibold" />
+          </div>
+
+          <div>
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Kategori *</label>
+            <select id="projEditCategory" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm">
+              <option value="web">Web Development</option>
+              <option value="design">Desain &amp; Media</option>
+              <option value="system">Sistem &amp; Data</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Preset Visual Mockup</label>
+            <select id="projEditMockupPreset" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm">
+              <option value="web-cms">Browser &amp; Cloud CMS</option>
+              <option value="ecommerce">Katalog &amp; Keranjang WA</option>
+              <option value="video-media">Player Video &amp; Kampanye</option>
+              <option value="print-signage">Desain Cetak &amp; Wayfinding</option>
+              <option value="data-system">Sistem &amp; Analitik Data</option>
+            </select>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">URL Gambar Sampul Kustom (Opsional)</label>
+            <input id="projEditImageUrl" type="url" placeholder="https://..." class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm" />
+          </div>
+
+          <div>
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Tautan Demo / Proyek</label>
+            <input id="projEditDemoUrl" type="text" placeholder="https://masbima.my.id atau #kontak" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm font-mono" />
+          </div>
+
+          <div>
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Teks Tombol Tautan</label>
+            <input id="projEditDemoLabel" type="text" placeholder="Buka Website ↗" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm" />
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Tag Teknologi (Pisahkan dengan koma)</label>
+            <input id="projEditTags" type="text" placeholder="Next.js, Tailwind CSS, Supabase" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm font-mono" />
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Ringkasan Singkat Kartu *</label>
+            <textarea id="projEditShortDesc" rows="2" required class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm"></textarea>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Studi Kasus: Tantangan</label>
+            <textarea id="projEditChallenge" rows="2" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm"></textarea>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Studi Kasus: Solusi &amp; Implementasi</label>
+            <textarea id="projEditSolution" rows="2" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm"></textarea>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Studi Kasus: Hasil &amp; Dampak</label>
+            <textarea id="projEditResult" rows="2" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-950 text-sm"></textarea>
+          </div>
+        </div>
+
+        <div class="pt-3 hairline-t flex justify-end gap-2">
+          <button type="button" onclick="closeProjectEditorModal()" class="px-4 py-2.5 rounded-lg hairline-all text-xs font-semibold">
+            Batal
+          </button>
+          <button type="submit" class="px-5 py-2.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-xs font-semibold">
+            Simpan Proyek
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       TOAST NOTIFIKASI
+  ===================================================================== -->
+  <div
+    id="toast"
+    role="status"
+    aria-live="polite"
+    class="fixed bottom-5 right-5 z-50 translate-y-16 opacity-0 pointer-events-none transition-all duration-300 px-4 py-3 rounded-xl bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-xs font-mono font-medium shadow-lg border-l-4 border-swissRed"
+  >
+    Tersimpan
+  </div>
+
+  <!-- =====================================================================
+       JAVASCRIPT: STATE ENGINE, SUPABASE CLIENT & ADMIN PANEL
+  ===================================================================== -->
+  <script>
+    // =========================================================================
+    // KONFIGURASI SUPABASE PERMANEN (TERTANAM UNTUK HOSTING / PRODUKSI)
+    // =========================================================================
+    const DEFAULT_SUPABASE_URL = "https://tnglziyshwxazjpgnocl.supabase.co";
+    const DEFAULT_SUPABASE_ANON_KEY = "sb_publishable_zF839EA3tERq0jdFsroshA_-QoxQAU_";
+
+    const STORAGE_KEYS = {
+      DATA: 'aryabima_portfolio_cms_v1',
+      MESSAGES: 'aryabima_portfolio_messages_v1',
+      SB_CREDS: 'aryabima_supabase_creds_v1',
+      ADMIN_SESSION: 'aryabima_admin_session_v1',
+      THEME: 'aryabima_theme'
+    };
+
+    const DEFAULT_PORTFOLIO_DATA = {
+      profile: {
+        brandName: 'Arya Bima',
+        fullName: 'Arya Bima Rozak',
+        roleTitle: 'Frontend Developer & Visual Designer',
+        monogram: 'ABR',
+        avatarUrl: '',
+        badgeText: 'Tersedia untuk Proyek & Kolaborasi',
+        heroHeadline: 'Halo, saya Arya Bima Rozak — Frontend Developer & Visual Designer',
+        heroSubheadline: 'Saya merancang dan membangun website modern yang cepat, responsif, serta sistem visual yang rapi dan komunikatif. Menggabungkan latar belakang teknis Sistem Informasi dengan kepekaan desain editorial untuk menghasilkan solusi digital yang fungsional.',
+        domain: 'masbima.my.id',
+        degreeBadge: 'S.Kom • UBSI',
+        location: 'Depok, Jawa Barat',
+        educationSummary: 'Sistem Informasi (UBSI)',
+        faviconLetter: 'B',
+        faviconBgColor: '#111827',
+        faviconAccentColor: '#E11D48',
+        faviconUrl: '',
+        primaryStack: ['Next.js', 'React', 'Tailwind CSS', 'Supabase', 'Vercel', 'CapCut Pro'],
+        githubUrl: 'https://github.com',
+        linkedinUrl: 'https://linkedin.com',
+        instagramUrl: 'https://instagram.com'
+      },
+      about: {
+        heading: 'Menjembatani logika rekayasa web dengan estetika desain yang bersih.',
+        paragraph1: 'Saya adalah lulusan Sarjana Komputer (S.Kom) jurusan Sistem Informasi dari Universitas Bina Sarana Informatika (UBSI) yang berdomisili di Depok, Jawa Barat. Saya memiliki ketertarikan kuat pada pengembangan antarmuka web modern, tata letak editorial yang terstruktur, serta komunikasi visual.',
+        paragraph2: 'Dalam setiap proyek—baik pengembangan aplikasi web berbasis cloud maupun produksi materi media institusional—saya mengutamakan kejelasan informasi, performa yang ringan di berbagai ukuran layar, serta ketelitian pada setiap detail eksekusi.',
+        stats: [
+          { value: '10+', label: 'Proyek Web & Desain', desc: 'Terselesaikan dengan standar responsif' },
+          { value: '5+', label: 'Domain & Deploy Aktif', desc: 'Vercel, Supabase & manajemen DNS' },
+          { value: '2', label: 'Keahlian Utama', desc: 'Frontend Dev & Visual Communication' },
+          { value: '100%', label: 'Mobile Friendly', desc: 'Adaptif di ponsel, tablet & desktop' }
+        ]
+      },
+      skills: [
+        {
+          id: 'sk-1',
+          code: '01 / FRONTEND',
+          title: 'Web & Frontend Development',
+          items: ['HTML5 & Semantic Web', 'CSS3 / Tailwind CSS', 'JavaScript (ES6+)', 'React & Next.js', 'Responsive UI Design', 'SVG & Micro-interactions']
+        },
+        {
+          id: 'sk-2',
+          code: '02 / INFRASTRUCTURE',
+          title: 'Backend, Cloud & Deployment',
+          items: ['Supabase Auth & PostgreSQL', 'Vercel Deployment', 'Manajemen Domain & DNS', 'IDWebHost Configuration', 'Git & GitHub Workflow', 'REST API Integration']
+        },
+        {
+          id: 'sk-3',
+          code: '03 / VISUAL MEDIA',
+          title: 'Desain Visual & Produksi Media',
+          items: ['Editorial & Swiss Grid Layout', 'Desain Banner & Signage Besar', 'Identitas Visual & Poster', 'Video Editing (CapCut Pro)', 'Motion Graphics & Reels', 'Tipografi & Sistem Warna']
+        },
+        {
+          id: 'sk-4',
+          code: '04 / DATA & OFFICE',
+          title: 'Sistem Informasi & Analisis Data',
+          items: ['Analisis Sistem Informasi', 'Microsoft Excel (Pivot & Lookup)', 'Pengolahan Data Administratif', 'Dokumentasi Teknis (SOP)', 'Quality Assurance (QA)', 'Manajemen Konten Digital']
+        }
+      ],
+      projects: [
+        {
+          id: 'proj-1',
+          category: 'web',
+          title: 'masbima.my.id — Platform Portofolio & Cloud CMS',
+          shortDesc: 'Website portofolio personal dengan desain Swiss Style responsif yang terhubung penuh dengan Admin Panel & database Supabase.',
+          mockupPreset: 'web-cms',
+          imageUrl: '',
+          demoUrl: 'https://masbima.my.id',
+          demoLabel: 'Kunjungi masbima.my.id ↗',
+          tags: ['HTML5', 'Tailwind CSS', 'Supabase', 'Vercel', 'DNS'],
+          challenge: 'Membangun identitas digital profesional yang ringan, cepat diakses di perangkat seluler, namun tetap mudah diperbarui tanpa harus mengubah kode berulang kali.',
+          solution: 'Merancang arsitektur grid editorial satu berkas dengan sistem tema Light/Dark, Admin Panel terintegrasi, serta sinkronisasi real-time ke Supabase PostgreSQL.',
+          result: 'Waktu muat halaman sangat cepat, tampilan tajam di seluruh resolusi layar, dan seluruh bagian konten dapat dikelola mandiri lewat browser.'
+        },
+        {
+          id: 'proj-2',
+          category: 'web',
+          title: 'Arima Store — Katalog E-Commerce & WhatsApp Checkout',
+          shortDesc: 'Platform etalase produk digital ringan dengan keranjang belanja dinamis dan konversi pesanan langsung ke WhatsApp.',
+          mockupPreset: 'ecommerce',
+          imageUrl: '',
+          demoUrl: '#kontak',
+          demoLabel: 'Minta Demo Proyek',
+          tags: ['Next.js', 'React', 'Tailwind CSS', 'WhatsApp API'],
+          challenge: 'Pelaku usaha membutuhkan katalog online yang mudah dipahami pembeli dari HP tanpa proses registrasi akun yang rumit.',
+          solution: 'Membangun antarmuka katalog cepat dengan filter produk instan, ringkasan keranjang otomatis, dan format pesan order terstruktur ke WhatsApp admin.',
+          result: 'Mempercepat alur pemesanan pelanggan seluler dan mempermudah rekap transaksi harian.'
+        },
+        {
+          id: 'proj-3',
+          category: 'design',
+          title: 'Kampanye Media & Video Edukasi Kesehatan Publik',
+          shortDesc: 'Produksi video kampanye visual dan infografis edukasi kesehatan untuk informasi layanan masyarakat di UPTD Puskesmas.',
+          mockupPreset: 'video-media',
+          imageUrl: '',
+          demoUrl: '#kontak',
+          demoLabel: 'Diskusi Proyek Serupa',
+          tags: ['CapCut Pro', 'Motion Graphics', 'Visual Storytelling', 'Infografis'],
+          challenge: 'Menyampaikan prosedur dan edukasi kesehatan publik agar mudah dicerna oleh berbagai lapisan masyarakat dalam durasi singkat.',
+          solution: 'Menyusun alur visual terstruktur dengan tipografi kontras tinggi, transisi bersih, dan narasi grafis yang ramah layar vertikal maupun layar ruang tunggu.',
+          result: 'Meningkatkan kejelasan penyampaian informasi program kesehatan kepada pengunjung fasilitas layanan.'
+        },
+        {
+          id: 'proj-4',
+          category: 'design',
+          title: 'Sistem Wayfinding & Identitas Cetak Skala Besar',
+          shortDesc: 'Perancangan spanduk, papan informasi ruang, dan petunjuk arah fasilitas (205 × 70 cm) dengan keterbacaan jarak jauh.',
+          mockupPreset: 'print-signage',
+          imageUrl: '',
+          demoUrl: '#kontak',
+          demoLabel: 'Konsultasi Desain Cetak',
+          tags: ['Print Layout', 'Signage 205×70cm', 'CMYK Pre-press', 'Typography'],
+          challenge: 'Memastikan informasi arah dan tata tertib fasilitas terbaca jelas dari jarak pandang jauh tanpa terlihat penuh atau membingungkan.',
+          solution: 'Menerapkan hierarki ukuran huruf berbasis jarak baca, kontras warna tegas, serta standar resolusi siap cetak CMYK.',
+          result: 'Alur navigasi pengunjung ruangan menjadi lebih tertib dan identitas visual fasilitas tampak seragam.'
+        },
+        {
+          id: 'proj-5',
+          category: 'system',
+          title: 'Sistem Rekap Data & Otomasi Laporan Operasional',
+          shortDesc: 'Perancangan template pengolahan data berbasis Excel terstruktur untuk meminimalkan kesalahan input dan mempercepat pelaporan.',
+          mockupPreset: 'data-system',
+          imageUrl: '',
+          demoUrl: '#kontak',
+          demoLabel: 'Lihat Detail Alur',
+          tags: ['Sistem Informasi', 'Excel Analytics', 'Data Validation', 'SOP'],
+          challenge: 'Rekapitulasi data operasional harian yang tersebar menyita waktu saat penyusunan laporan berkala.',
+          solution: 'Membangun struktur tabel terstandar dengan validasi input otomatis, rumus agregasi dinamis, dan ringkasan dashboard indikator utama.',
+          result: 'Proses kompilasi laporan menjadi jauh lebih cepat, konsisten, dan mudah diaudit.'
+        }
+      ],
+      timeline: {
+        experience: [
+          {
+            id: 'exp-1',
+            period: '2024 — SEKARANG',
+            title: 'Freelance Web Developer & Visual Designer',
+            org: 'Independen • Depok & Remote',
+            desc: 'Merancang dan membangun website portofolio, landing page bisnis, integrasi Supabase & Vercel, serta materi desain visual digital maupun cetak.'
+          },
+          {
+            id: 'exp-2',
+            period: '2023 — 2024',
+            title: 'Multimedia & Visual Content Creator (Proyek Institusional)',
+            org: 'UPTD Puskesmas Cilodong • Depok',
+            desc: 'Memproduksi video kampanye edukasi kesehatan, media informasi digital, serta desain kebutuhan cetak dan petunjuk arah fasilitas.'
+          },
+          {
+            id: 'exp-3',
+            period: '2022 — 2023',
+            title: 'Pengembang Proyek Sistem Informasi & Aplikasi Web',
+            org: 'Proyek Akademik & Kolaborasi Tim',
+            desc: 'Menganalisis kebutuhan sistem, merancang basis data relasional, dan membangun antarmuka web responsif.'
+          }
+        ],
+        education: [
+          {
+            id: 'edu-1',
+            period: 'LULUSAN SARJANA (S.KOM)',
+            title: 'S1 Sistem Informasi',
+            org: 'Universitas Bina Sarana Informatika (UBSI)',
+            desc: 'Fokus pada rekayasa perangkat lunak, analisis dan perancangan sistem informasi, manajemen basis data, serta pengembangan aplikasi web.'
+          },
+          {
+            id: 'edu-2',
+            period: 'KOMPETENSI BERKELANJUTAN',
+            title: 'Modern Frontend Engineering & Cloud Deployment',
+            org: 'Eksplorasi Mandiri & Studi Kasus Produksi',
+            desc: 'Pendalaman ekosistem React/Next.js, Tailwind CSS, arsitektur PostgreSQL/Supabase, serta optimasi performa web mobile-first.'
+          }
+        ]
+      },
+      contact: {
+        heading: 'Mari Berdiskusi & Berkolaborasi',
+        subheading: 'Tertarik bekerja sama untuk pembuatan website, kebutuhan desain visual, atau peluang karier? Silakan hubungi saya melalui kontak langsung atau kirim pesan melalui formulir di samping.',
+        email: 'aryabimarozak@gmail.com',
+        waNumber: '6281234567890',
+        waNote: 'Respon Cepat (Jam Kerja WIB)',
+        footerCopyright: '© 2026 Arya Bima Rozak. Hak cipta dilindungi.'
+      }
+    };
+
+    let portfolioData = loadLocalPortfolioData();
+    let activeProjectFilter = 'all';
+    let supabaseClient = null;
+    let isSupabaseConnected = false;
+    let isSupabaseAuthenticated = false;
+    let isAdminLoggedIn = sessionStorage.getItem(STORAGE_KEYS.ADMIN_SESSION) === 'true';
+
+    // =========================================================================
+    // HELPER: PENYIMPANAN LOKAL & SUPABASE CLIENT
+    // =========================================================================
+    function loadLocalPortfolioData() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEYS.DATA);
+        if (!raw) return JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA));
+        const parsed = JSON.parse(raw);
+        return {
+          ...JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA)),
+          ...parsed,
+          profile: { ...DEFAULT_PORTFOLIO_DATA.profile, ...(parsed.profile || {}) },
+          about: { ...DEFAULT_PORTFOLIO_DATA.about, ...(parsed.about || {}) },
+          timeline: { ...DEFAULT_PORTFOLIO_DATA.timeline, ...(parsed.timeline || {}) },
+          contact: { ...DEFAULT_PORTFOLIO_DATA.contact, ...(parsed.contact || {}) }
+        };
+      } catch (e) {
+        return JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA));
+      }
+    }
+
+    function saveLocalPortfolioData() {
+      localStorage.setItem(STORAGE_KEYS.DATA, JSON.stringify(portfolioData));
+    }
+
+    function getSupabaseCreds() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.SB_CREDS) || '{}');
+        const rawUrl = (saved.url || DEFAULT_SUPABASE_URL || '').trim().replace(/\/+$/, '');
+        const rawKey = (saved.anonKey || DEFAULT_SUPABASE_ANON_KEY || '').trim();
+        return { url: rawUrl, anonKey: rawKey };
+      } catch (e) {
+        return {
+          url: DEFAULT_SUPABASE_URL.replace(/\/+$/, ''),
+          anonKey: DEFAULT_SUPABASE_ANON_KEY
+        };
+      }
+    }
+
+    async function initSupabaseConnection(silent = false) {
+      const { url, anonKey } = getSupabaseCreds();
+      if (!url || !anonKey || !window.supabase) {
+        supabaseClient = null;
+        isSupabaseConnected = false;
+        isSupabaseAuthenticated = false;
+        updateSyncBadges();
+        return false;
+      }
+
+      try {
+        supabaseClient = window.supabase.createClient(url, anonKey);
+        const { data, error } = await supabaseClient
+          .from('portfolio_state')
+          .select('content')
+          .eq('id', 'main')
+          .maybeSingle();
+
+        if (error) {
+          console.warn('Supabase read notice:', error.message);
+          isSupabaseConnected = true;
+        } else {
+          isSupabaseConnected = true;
+          if (data && data.content) {
+            portfolioData = {
+              ...JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA)),
+              ...data.content
+            };
+            saveLocalPortfolioData();
+            renderAllPublicSections();
+          }
+        }
+
+        const { data: sessionData } = await supabaseClient.auth.getSession();
+        if (sessionData && sessionData.session) {
+          isSupabaseAuthenticated = true;
+          isAdminLoggedIn = true;
+          sessionStorage.setItem(STORAGE_KEYS.ADMIN_SESSION, 'true');
+        } else {
+          isSupabaseAuthenticated = false;
+        }
+
+        updateSyncBadges();
+        if (!silent) showToast('Terhubung ke Supabase Cloud!');
+        return true;
+      } catch (err) {
+        console.error('Supabase init error:', err);
+        supabaseClient = null;
+        isSupabaseConnected = false;
+        isSupabaseAuthenticated = false;
+        updateSyncBadges();
+        if (!silent) showToast('Gagal terhubung ke Supabase. Periksa URL & Key.');
+        return false;
+      }
+    }
+
+    async function persistPortfolioChanges(successMessage = 'Perubahan berhasil disimpan!') {
+      saveLocalPortfolioData();
+      renderAllPublicSections();
+
+      if (supabaseClient && isSupabaseConnected) {
+        if (!isSupabaseAuthenticated) {
+          showToast('Tersimpan lokal. Login menggunakan akun Supabase Auth untuk sinkron ke Cloud!');
+          return;
+        }
+
+        try {
+          const { error } = await supabaseClient
+            .from('portfolio_state')
+            .upsert({
+              id: 'main',
+              content: portfolioData,
+              updated_at: new Date().toISOString()
+            });
+
+          if (error) {
+            showToast(`Tersimpan lokal (Cloud: ${error.message})`);
+            return;
+          }
+          showToast(`${successMessage} (Tersinkron ke Supabase Cloud)`);
+          return;
+        } catch (err) {
+          showToast('Tersimpan di penyimpanan lokal.');
+          return;
+        }
+      }
+
+      showToast(`${successMessage} (Mode Lokal)`);
+    }
+
+    function updateSyncBadges() {
+      const pubDot = document.getElementById('publicSyncDot');
+      const pubText = document.getElementById('publicSyncText');
+      const admDot = document.getElementById('adminCloudStatusDot');
+      const admLabel = document.getElementById('adminCloudStatusLabel');
+
+      if (isSupabaseConnected) {
+        if (pubDot) pubDot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-500';
+        if (pubText) pubText.textContent = 'Supabase Live';
+        if (admDot) {
+          admDot.className = isSupabaseAuthenticated
+            ? 'w-2 h-2 rounded-full bg-emerald-500'
+            : 'w-2 h-2 rounded-full bg-amber-500';
+        }
+        if (admLabel) {
+          admLabel.textContent = isSupabaseAuthenticated
+            ? 'Terhubung & Terautentikasi: Supabase Cloud'
+            : 'Terhubung (Login Supabase Auth untuk Sync)';
+        }
+      } else {
+        if (pubDot) pubDot.className = 'w-1.5 h-1.5 rounded-full bg-amber-500';
+        if (pubText) pubText.textContent = 'Lokal';
+        if (admDot) admDot.className = 'w-2 h-2 rounded-full bg-amber-500';
+        if (admLabel) admLabel.textContent = 'Mode Preview Lokal';
+      }
+    }
+
+    // =========================================================================
+    // TOAST & CLIPBOARD HELPERS
+    // =========================================================================
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.remove('translate-y-16', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('translate-y-16', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3400);
+    }
+
+    function copyTextToClipboard(text, successMsg) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg || 'Tersalin ke clipboard!');
+      } catch (e) {
+        showToast('Gagal menyalin teks.');
+      }
+      textarea.remove();
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // =========================================================================
+    // THEME TOGGLE & MOBILE NAVIGATION
+    // =========================================================================
+    function applyTheme(theme) {
+      const html = document.documentElement;
+      const sunIcon = document.getElementById('sunIcon');
+      const moonIcon = document.getElementById('moonIcon');
+      if (theme === 'dark') {
+        html.classList.add('dark');
+        if (sunIcon) sunIcon.classList.remove('hidden');
+        if (moonIcon) moonIcon.classList.add('hidden');
+      } else {
+        html.classList.remove('dark');
+        if (sunIcon) sunIcon.classList.add('hidden');
+        if (moonIcon) moonIcon.classList.remove('hidden');
+      }
+      localStorage.setItem(STORAGE_KEYS.THEME, theme);
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      applyTheme(isDark ? 'light' : 'dark');
+    }
+
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      document.getElementById('hamburgerIcon').classList.toggle('hidden', isHidden);
+      document.getElementById('closeMenuIcon').classList.toggle('hidden', !isHidden);
+      mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
+    });
+
+    document.querySelectorAll('.mobile-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        document.getElementById('hamburgerIcon').classList.remove('hidden');
+        document.getElementById('closeMenuIcon').classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // =========================================================================
+    // SVG MOCKUP GENERATOR UNTUK KARTU PROYEK
+    // =========================================================================
+    function getProjectMockupHtml(project) {
+      if (project.imageUrl && project.imageUrl.trim()) {
+        return `<img src="${escapeHtml(project.imageUrl)}" alt="${escapeHtml(project.title)}" class="w-full h-44 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/640x360/18181B/FAFAFA?text=Preview+Proyek';" />`;
+      }
+
+      const preset = project.mockupPreset || 'web-cms';
+      const svgs = {
+        'web-cms': `
+          <svg viewBox="0 0 400 210" class="w-full h-44 block" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="210" fill="#111827"/>
+            <rect x="24" y="20" width="352" height="170" rx="10" fill="#1F2937" stroke="#374151"/>
+            <circle cx="42" cy="34" r="4" fill="#E11D48"/>
+            <circle cx="55" cy="34" r="4" fill="#F59E0B"/>
+            <circle cx="68" cy="34" r="4" fill="#10B981"/>
+            <rect x="90" y="29" width="180" height="10" rx="5" fill="#111827"/>
+            <line x1="24" y1="48" x2="376" y2="48" stroke="#374151"/>
+            <rect x="42" y="64" width="110" height="14" rx="3" fill="#E11D48"/>
+            <rect x="42" y="88" width="190" height="10" rx="3" fill="#F9FAFB"/>
+            <rect x="42" y="106" width="150" height="8" rx="3" fill="#9CA3AF"/>
+            <rect x="42" y="130" width="84" height="26" rx="6" fill="#E11D48"/>
+            <rect x="260" y="64" width="96" height="106" rx="8" fill="#111827" stroke="#374151"/>
+            <text x="308" y="122" text-anchor="middle" fill="#F9FAFB" font-family="monospace" font-size="18" font-weight="bold">CMS</text>
+          </svg>`,
+        'ecommerce': `
+          <svg viewBox="0 0 400 210" class="w-full h-44 block" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="210" fill="#F4F4F5"/>
+            <rect x="28" y="22" width="106" height="166" rx="10" fill="#FFFFFF" stroke="#E4E4E7"/>
+            <rect x="38" y="34" width="86" height="68" rx="6" fill="#18181B"/>
+            <rect x="38" y="112" width="68" height="8" rx="3" fill="#18181B"/>
+            <rect x="38" y="126" width="48" height="8" rx="3" fill="#E11D48"/>
+            <rect x="38" y="152" width="86" height="24" rx="5" fill="#E11D48"/>
+            <rect x="147" y="22" width="106" height="166" rx="10" fill="#FFFFFF" stroke="#E4E4E7"/>
+            <rect x="157" y="34" width="86" height="68" rx="6" fill="#27272A"/>
+            <rect x="157" y="112" width="74" height="8" rx="3" fill="#18181B"/>
+            <rect x="157" y="126" width="44" height="8" rx="3" fill="#E11D48"/>
+            <rect x="157" y="152" width="86" height="24" rx="5" fill="#18181B"/>
+            <rect x="266" y="22" width="106" height="166" rx="10" fill="#18181B"/>
+            <text x="319" y="96" text-anchor="middle" fill="#FFFFFF" font-family="monospace" font-size="11">CHECKOUT</text>
+            <rect x="280" y="114" width="78" height="26" rx="6" fill="#10B981"/>
+            <text x="319" y="131" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="10" font-weight="bold">WhatsApp</text>
+          </svg>`,
+        'video-media': `
+          <svg viewBox="0 0 400 210" class="w-full h-44 block" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="210" fill="#18181B"/>
+            <rect x="32" y="22" width="336" height="128" rx="10" fill="#09090B" stroke="#27272A"/>
+            <circle cx="200" cy="86" r="24" fill="#E11D48"/>
+            <polygon points="195,76 213,86 195,96" fill="#FFFFFF"/>
+            <rect x="32" y="160" width="336" height="28" rx="6" fill="#27272A"/>
+            <rect x="44" y="168" width="95" height="12" rx="3" fill="#E11D48"/>
+            <rect x="145" y="168" width="120" height="12" rx="3" fill="#3F3F46"/>
+            <rect x="271" y="168" width="85" height="12" rx="3" fill="#52525B"/>
+          </svg>`,
+        'print-signage': `
+          <svg viewBox="0 0 400 210" class="w-full h-44 block" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="210" fill="#FAFAFA"/>
+            <rect x="24" y="46" width="352" height="118" rx="8" fill="#FFFFFF" stroke="#18181B" stroke-width="2"/>
+            <rect x="24" y="46" width="16" height="118" fill="#E11D48"/>
+            <rect x="56" y="68" width="170" height="16" rx="3" fill="#18181B"/>
+            <rect x="56" y="94" width="220" height="10" rx="3" fill="#71717A"/>
+            <rect x="56" y="112" width="180" height="10" rx="3" fill="#A1A1AA"/>
+            <circle cx="328" cy="105" r="26" fill="#18181B"/>
+            <path d="M320 105 H336 M330 99 L336 105 L330 111" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+            <text x="356" y="34" text-anchor="end" fill="#71717A" font-family="monospace" font-size="10">205 × 70 CM • CMYK</text>
+          </svg>`,
+        'data-system': `
+          <svg viewBox="0 0 400 210" class="w-full h-44 block" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="210" fill="#0F172A"/>
+            <rect x="26" y="24" width="348" height="162" rx="10" fill="#1E293B" stroke="#334155"/>
+            <rect x="46" y="122" width="34" height="44" rx="4" fill="#334155"/>
+            <rect x="94" y="96" width="34" height="70" rx="4" fill="#475569"/>
+            <rect x="142" y="74" width="34" height="92" rx="4" fill="#E11D48"/>
+            <rect x="190" y="54" width="34" height="112" rx="4" fill="#F8FAFC"/>
+            <rect x="250" y="46" width="104" height="34" rx="6" fill="#0F172A"/>
+            <rect x="250" y="90" width="104" height="34" rx="6" fill="#0F172A"/>
+            <rect x="250" y="134" width="104" height="32" rx="6" fill="#E11D48"/>
+            <text x="302" y="154" text-anchor="middle" fill="#FFFFFF" font-family="monospace" font-size="11" font-weight="bold">100% VALID</text>
+          </svg>`
+      };
+      return svgs[preset] || svgs['web-cms'];
+    }
+
+    // =========================================================================
+    // RENDERER HALAMAN PUBLIK
+    // =========================================================================
+    function buildFaviconDataUri(letter, bgColor, accentColor) {
+      const safeLetter = (letter || 'B').trim().slice(0, 2).toUpperCase();
+      const safeBg = bgColor || '#111827';
+      const safeAccent = accentColor || '#E11D48';
+      const fontSize = safeLetter.length > 1 ? '26' : '34';
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='${safeBg}'/><text x='27' y='43' text-anchor='middle' fill='#FAFAFA' font-family='Inter,Arial,sans-serif' font-size='${fontSize}' font-weight='800'>${safeLetter}</text><circle cx='50' cy='41' r='5' fill='${safeAccent}'/></svg>`;
+      return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+    }
+
+    function applyFaviconFromProfile(profile) {
+      const linkEl = document.getElementById('dynamicFavicon');
+      if (!linkEl) return;
+      if (profile.faviconUrl && profile.faviconUrl.trim()) {
+        linkEl.type = 'image/png';
+        linkEl.href = profile.faviconUrl.trim();
+      } else {
+        linkEl.type = 'image/svg+xml';
+        linkEl.href = buildFaviconDataUri(
+          profile.faviconLetter || 'B',
+          profile.faviconBgColor || '#111827',
+          profile.faviconAccentColor || '#E11D48'
+        );
+      }
+    }
+
+    function updateFaviconPreviewInAdmin() {
+      const previewEl = document.getElementById('faviconPreviewImg');
+      if (!previewEl) return;
+      const customUrl = document.getElementById('editFaviconUrl').value.trim();
+      if (customUrl) {
+        previewEl.src = customUrl;
+      } else {
+        previewEl.src = buildFaviconDataUri(
+          document.getElementById('editFaviconLetter').value,
+          document.getElementById('editFaviconBgColor').value,
+          document.getElementById('editFaviconAccentColor').value
+        );
+      }
+    }
+
+    function renderAllPublicSections() {
+      const p = portfolioData.profile;
+      const a = portfolioData.about;
+      const c = portfolioData.contact;
+
+      applyFaviconFromProfile(p);
+
+      // Brand & Hero
+      document.getElementById('navBrandLogo').innerHTML = `${escapeHtml(p.brandName)}<span class="text-swissRed">.</span>`;
+      document.getElementById('heroBadgeText').textContent = p.badgeText;
+
+      const safeFullName = escapeHtml(p.fullName);
+      const rawHeadline = escapeHtml(p.heroHeadline);
+      document.getElementById('heroHeadline').innerHTML = rawHeadline.includes(safeFullName)
+        ? rawHeadline.replace(safeFullName, `<span class="underline decoration-swissRed decoration-4 underline-offset-4">${safeFullName}</span>`)
+        : rawHeadline;
+
+      document.getElementById('heroSubheadline').textContent = p.heroSubheadline;
+
+      // Kartu Profil Kanan
+      document.getElementById('cardDegreeBadge').textContent = p.degreeBadge;
+      document.getElementById('cardFullName').textContent = p.fullName;
+      document.getElementById('cardRoleTitle').textContent = p.roleTitle;
+      document.getElementById('cardDomainText').textContent = p.domain;
+      document.getElementById('cardLocationText').textContent = p.location;
+      document.getElementById('cardEducationText').textContent = p.educationSummary;
+
+      const avatarWrap = document.getElementById('cardAvatarWrapper');
+      if (p.avatarUrl && p.avatarUrl.trim()) {
+        avatarWrap.innerHTML = `<img src="${escapeHtml(p.avatarUrl)}" alt="${escapeHtml(p.fullName)}" class="w-full h-full object-cover" onerror="this.onerror=null;this.parentElement.innerHTML='<span class=\\'font-mono text-[10px] tracking-widest text-swissRed font-semibold\\'>PORTFOLIO</span><span class=\\'text-2xl sm:text-3xl font-extrabold tracking-tighter\\'>${escapeHtml(p.monogram || 'ABR')}</span>';" />`;
+      } else {
+        avatarWrap.innerHTML = `
+          <span class="font-mono text-[10px] tracking-widest text-swissRed font-semibold">PORTFOLIO</span>
+          <span class="text-2xl sm:text-3xl font-extrabold tracking-tighter">${escapeHtml(p.monogram || 'ABR')}</span>
+        `;
+      }
+
+      const stackHtml = (p.primaryStack || []).map(
+        (tech) => `<span class="px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-800 font-mono text-xs font-medium">${escapeHtml(tech)}</span>`
+      ).join('');
+      document.getElementById('cardPrimaryStack').innerHTML = stackHtml;
+
+      // Tautan Sosial Hero
+      const socials = [
+        { label: 'GitHub', url: p.githubUrl },
+        { label: 'LinkedIn', url: p.linkedinUrl },
+        { label: 'Instagram', url: p.instagramUrl },
+        { label: p.domain, url: p.domain.startsWith('http') ? p.domain : `https://${p.domain}` }
+      ].filter((s) => s.url && s.url.trim());
+
+      document.getElementById('heroSocialLinks').innerHTML = socials.map(
+        (s) => `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg hairline-all bg-white dark:bg-gray-900 hover:border-swissRed hover:text-swissRed font-mono text-xs transition-colors">${escapeHtml(s.label)} ↗</a>`
+      ).join('');
+
+      // Tentang & Statistik
+      document.getElementById('aboutHeading').textContent = a.heading;
+      document.getElementById('aboutParagraph1').textContent = a.paragraph1;
+      document.getElementById('aboutParagraph2').textContent = a.paragraph2;
+
+      document.getElementById('statsGrid').innerHTML = (a.stats || []).map((st) => `
+        <div class="swiss-card rounded-2xl p-5 sm:p-6">
+          <div class="text-2xl sm:text-3xl font-extrabold text-swissRed tracking-tight">${escapeHtml(st.value)}</div>
+          <div class="text-sm font-bold mt-2">${escapeHtml(st.label)}</div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">${escapeHtml(st.desc)}</p>
+        </div>
+      `).join('');
+
+      // Keahlian
+      document.getElementById('skillsGrid').innerHTML = (portfolioData.skills || []).map((cat) => `
+        <div class="swiss-card rounded-2xl p-6 sm:p-7">
+          <span class="font-mono text-xs font-semibold text-swissRed uppercase tracking-wider">${escapeHtml(cat.code)}</span>
+          <h3 class="text-lg sm:text-xl font-bold mt-1.5 mb-4">${escapeHtml(cat.title)}</h3>
+          <div class="flex flex-wrap gap-2">
+            ${(cat.items || []).map((item) => `
+              <span class="px-3 py-1.5 rounded-lg bg-[#FAFAFA] dark:bg-gray-900 hairline-all text-xs sm:text-sm font-medium">
+                ${escapeHtml(item)}
+              </span>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      // Proyek & Filter
+      renderProjectsSection();
+
+      // Timeline Pengalaman & Pendidikan
+      document.getElementById('experienceTimeline').innerHTML = (portfolioData.timeline.experience || []).map((item, idx) => `
+        <div class="relative">
+          <span class="absolute -left-[31px] top-1 w-3.5 h-3.5 rounded-full ${idx === 0 ? 'bg-swissRed' : 'bg-gray-400 dark:bg-gray-600'} ring-4 ring-[#FAFAFA] dark:ring-[#0B0F19]"></span>
+          <span class="font-mono text-xs font-semibold text-swissRed uppercase">${escapeHtml(item.period)}</span>
+          <h4 class="text-base sm:text-lg font-bold mt-1">${escapeHtml(item.title)}</h4>
+          <p class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 mt-0.5">${escapeHtml(item.org)}</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">${escapeHtml(item.desc)}</p>
+        </div>
+      `).join('');
+
+      document.getElementById('educationTimeline').innerHTML = (portfolioData.timeline.education || []).map((item, idx) => `
+        <div class="relative">
+          <span class="absolute -left-[31px] top-1 w-3.5 h-3.5 rounded-full ${idx === 0 ? 'bg-gray-900 dark:bg-white' : 'bg-gray-400 dark:bg-gray-600'} ring-4 ring-[#FAFAFA] dark:ring-[#0B0F19]"></span>
+          <span class="font-mono text-xs font-semibold text-swissRed uppercase">${escapeHtml(item.period)}</span>
+          <h4 class="text-base sm:text-lg font-bold mt-1">${escapeHtml(item.title)}</h4>
+          <p class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 mt-0.5">${escapeHtml(item.org)}</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">${escapeHtml(item.desc)}</p>
+        </div>
+      `).join('');
+
+      // Kontak & Footer
+      document.getElementById('contactHeading').textContent = c.heading;
+      document.getElementById('contactSubheading').textContent = c.subheading;
+      document.getElementById('contactEmailDisplay').textContent = c.email;
+      document.getElementById('contactFooterEmailHint').textContent = c.email;
+      document.getElementById('contactDomainDisplay').textContent = p.domain;
+      document.getElementById('contactWaNote').textContent = c.waNote;
+      document.getElementById('contactLocationDisplay').textContent = `${p.location}, Indonesia`;
+      document.getElementById('footerBrandText').innerHTML = `${escapeHtml(p.brandName)}<span class="text-swissRed">.</span>`;
+      document.getElementById('footerCopyrightText').textContent = c.footerCopyright;
+
+      const waClean = (c.waNumber || '').replace(/[^0-9]/g, '');
+      const waMsg = encodeURIComponent(`Halo ${p.fullName}, saya tertarik berdiskusi mengenai proyek/kolaborasi.`);
+      document.getElementById('contactWaLink').href = waClean ? `https://wa.me/${waClean}?text=${waMsg}` : `https://wa.me/?text=${waMsg}`;
+    }
+
+    function getCategoryLabel(cat) {
+      if (cat === 'web') return 'Web Development';
+      if (cat === 'design') return 'Desain & Media';
+      if (cat === 'system') return 'Sistem & Data';
+      return 'Lainnya';
+    }
+
+    function renderProjectsSection() {
+      const filters = [
+        { key: 'all', label: 'Semua' },
+        { key: 'web', label: 'Web Development' },
+        { key: 'design', label: 'Desain & Media' },
+        { key: 'system', label: 'Sistem & Data' }
+      ];
+
+      document.getElementById('projectFilterBar').innerHTML = filters.map((f) => {
+        const isActive = activeProjectFilter === f.key;
+        return `
+          <button
+            type="button"
+            onclick="setProjectFilter('${f.key}')"
+            class="px-4 py-2 rounded-lg text-xs font-mono font-semibold transition-colors ${
+              isActive
+                ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
+                : 'hairline-all bg-white dark:bg-gray-900 hover:border-gray-900 dark:hover:border-gray-300'
+            }"
+          >
+            ${f.label}
+          </button>
+        `;
+      }).join('');
+
+      const filtered = activeProjectFilter === 'all'
+        ? portfolioData.projects
+        : portfolioData.projects.filter((p) => p.category === activeProjectFilter);
+
+      document.getElementById('projectsGrid').innerHTML = filtered.map((proj) => `
+        <article class="swiss-card rounded-2xl overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="hairline-b overflow-hidden">${getProjectMockupHtml(proj)}</div>
+            <div class="p-6">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-rose-50 dark:bg-rose-950/60 text-swissRed font-mono text-[11px] font-semibold">
+                  ${escapeHtml(getCategoryLabel(proj.category))}
+                </span>
+              </div>
+              <h3 class="text-lg font-bold tracking-tight leading-snug">${escapeHtml(proj.title)}</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-2 line-clamp-2 leading-relaxed">
+                ${escapeHtml(proj.shortDesc)}
+              </p>
+              <div class="flex flex-wrap gap-1.5 mt-4">
+                ${(proj.tags || []).map((t) => `<span class="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-[11px]">${escapeHtml(t)}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 py-4 hairline-t flex items-center justify-between gap-2 bg-[#FAFAFA]/60 dark:bg-gray-900/40">
+            <button
+              type="button"
+              onclick="openProjectModal('${escapeHtml(proj.id)}')"
+              class="text-xs font-mono font-semibold text-swissRed hover:underline"
+            >
+              Studi Kasus →
+            </button>
+            <a
+              href="${escapeHtml(proj.demoUrl || '#kontak')}"
+              ${(proj.demoUrl || '').startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}
+              class="text-xs font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+            >
+              ${escapeHtml(proj.demoLabel || 'Lihat ↗')}
+            </a>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function setProjectFilter(filterKey) {
+      activeProjectFilter = filterKey;
+      renderProjectsSection();
+    }
+
+    // =========================================================================
+    // MODAL STUDI KASUS PROYEK
+    // =========================================================================
+    function openProjectModal(projId) {
+      const proj = portfolioData.projects.find((item) => item.id === projId);
+      if (!proj) return;
+
+      document.getElementById('modalCategory').textContent = getCategoryLabel(proj.category);
+      document.getElementById('modalMockup').innerHTML = getProjectMockupHtml(proj);
+      document.getElementById('modalTitle').textContent = proj.title;
+      document.getElementById('modalSummary').textContent = proj.shortDesc;
+      document.getElementById('modalChallenge').textContent = proj.challenge || '—';
+      document.getElementById('modalSolution').textContent = proj.solution || '—';
+      document.getElementById('modalResult').textContent = proj.result || '—';
+
+      document.getElementById('modalTags').innerHTML = (proj.tags || []).map(
+        (t) => `<span class="px-2.5 py-1 rounded-md hairline-all font-mono text-xs">${escapeHtml(t)}</span>`
+      ).join('');
+
+      const demoLink = document.getElementById('modalDemoLink');
+      demoLink.href = proj.demoUrl || '#kontak';
+      demoLink.textContent = proj.demoLabel || 'Kunjungi Tautan Proyek ↗';
+      if ((proj.demoUrl || '').startsWith('http')) {
+        demoLink.setAttribute('target', '_blank');
+      } else {
+        demoLink.removeAttribute('target');
+      }
+
+      const modal = document.getElementById('projectModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+      const modal = document.getElementById('projectModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('closeModalBtn').addEventListener('click', closeProjectModal);
+    document.getElementById('modalBackdrop').addEventListener('click', closeProjectModal);
+    document.getElementById('modalDiscussBtn').addEventListener('click', closeProjectModal);
+    document.getElementById('modalDemoLink').addEventListener('click', (e) => {
+      if (e.currentTarget.getAttribute('href').startsWith('#')) closeProjectModal();
+    });
+
+    // =========================================================================
+    // FORMULIR KONTAK PUBLIK & COPY BUTTONS
+    // =========================================================================
+    document.getElementById('copyEmailBtn').addEventListener('click', () => {
+      copyTextToClipboard(portfolioData.contact.email, 'Alamat email berhasil disalin!');
+    });
+
+    document.getElementById('copyDomainBtn').addEventListener('click', () => {
+      copyTextToClipboard(portfolioData.profile.domain, 'Alamat domain berhasil disalin!');
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const nama = document.getElementById('inputNama').value.trim();
+      const email = document.getElementById('inputEmail').value.trim();
+      const subjek = document.getElementById('inputSubjek').value.trim();
+      const pesan = document.getElementById('inputPesan').value.trim();
+
+      const newMessage = {
+        id: 'msg-' + Date.now(),
+        sender_name: nama,
+        sender_email: email,
+        subject: subjek,
+        message: pesan,
+        is_read: false,
+        created_at: new Date().toISOString()
+      };
+
+      // Simpan ke localStorage inbox
+      try {
+        const existing = JSON.parse(localStorage.getItem(STORAGE_KEYS.MESSAGES) || '[]');
+        existing.unshift(newMessage);
+        localStorage.setItem(STORAGE_KEYS.MESSAGES, JSON.stringify(existing));
+      } catch (err) {}
+
+      // Jika Supabase terhubung, kirim ke tabel portfolio_messages
+      if (supabaseClient && isSupabaseConnected) {
+        try {
+          await supabaseClient.from('portfolio_messages').insert({
+            sender_name: nama,
+            sender_email: email,
+            subject: subjek,
+            message: pesan
+          });
+        } catch (err) {
+          console.warn('Supabase message insert fallback:', err);
+        }
+      }
+
+      const mailtoHref = `mailto:${encodeURIComponent(portfolioData.contact.email)}?subject=${encodeURIComponent(subjek)}&body=${encodeURIComponent(`Halo ${portfolioData.profile.fullName},\n\nNama: ${nama}\nEmail: ${email}\n\n${pesan}`)}`;
+      document.getElementById('mailtoFallbackLink').href = mailtoHref;
+      document.getElementById('confirmationDetail').textContent = `Dari: ${nama} (${email}) — Subjek: "${subjek}"`;
+      document.getElementById('formConfirmation').classList.remove('hidden');
+      document.getElementById('contactForm').reset();
+      showToast('Pesan berhasil dikirim!');
+    });
+
+    document.getElementById('resetFormBtn').addEventListener('click', () => {
+      document.getElementById('formConfirmation').classList.add('hidden');
+    });
+
+    // =========================================================================
+    // ADMIN PANEL NAVIGATION & AUTHENTICATION
+    // =========================================================================
+    function openAdminView() {
+      document.getElementById('publicApp').classList.add('hidden');
+      document.getElementById('adminApp').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      if (isAdminLoggedIn) {
+        showAdminDashboard();
+      } else {
+        document.getElementById('adminLoginScreen').classList.remove('hidden');
+        document.getElementById('adminDashboardScreen').classList.add('hidden');
+        document.getElementById('adminLogoutBtn').classList.add('hidden');
+      }
+    }
+
+    function closeAdminView() {
+      document.getElementById('adminApp').classList.add('hidden');
+      document.getElementById('publicApp').classList.remove('hidden');
+      renderAllPublicSections();
+    }
+
+    function showAdminDashboard() {
+      isAdminLoggedIn = true;
+      sessionStorage.setItem(STORAGE_KEYS.ADMIN_SESSION, 'true');
+      document.getElementById('adminLoginScreen').classList.add('hidden');
+      document.getElementById('adminDashboardScreen').classList.remove('hidden');
+      document.getElementById('adminLogoutBtn').classList.remove('hidden');
+      populateAllAdminForms();
+      refreshInboxMessages();
+    }
+
+    function enterDemoAdminMode() {
+      isSupabaseAuthenticated = false;
+      updateSyncBadges();
+      showAdminDashboard();
+      showToast('Masuk ke Mode Preview Lokal Admin.');
+    }
+
+    async function handleAdminLogout() {
+      if (supabaseClient) {
+        try { await supabaseClient.auth.signOut(); } catch (e) {}
+      }
+      isSupabaseAuthenticated = false;
+      isAdminLoggedIn = false;
+      sessionStorage.removeItem(STORAGE_KEYS.ADMIN_SESSION);
+      updateSyncBadges();
+      document.getElementById('adminDashboardScreen').classList.add('hidden');
+      document.getElementById('adminLogoutBtn').classList.add('hidden');
+      document.getElementById('adminLoginScreen').classList.remove('hidden');
+      showToast('Anda telah keluar dari Admin Panel.');
+    }
+
+    document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('adminEmailInput').value.trim();
+      const password = document.getElementById('adminPasswordInput').value;
+
+      if (supabaseClient && isSupabaseConnected && password !== 'admin123') {
+        const btn = document.getElementById('adminLoginSubmitBtn');
+        btn.textContent = 'Memverifikasi Supabase Auth...';
+        const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+        btn.textContent = 'Masuk ke Dashboard Cloud';
+
+        if (!error) {
+          isSupabaseAuthenticated = true;
+          updateSyncBadges();
+          showAdminDashboard();
+          showToast('Login Supabase Auth berhasil! Mode Cloud aktif.');
+          return;
+        } else {
+          showToast(`Gagal login Supabase: ${error.message}`);
+          return;
+        }
+      }
+
+      if (password === 'admin123') {
+        isSupabaseAuthenticated = false;
+        updateSyncBadges();
+        showAdminDashboard();
+        showToast('Login Mode Lokal (Gunakan akun Supabase Auth agar tersimpan ke Cloud).');
+      } else {
+        showToast('Sandi salah. Gunakan password akun Supabase Auth Anda.');
+      }
+    });
+
+    // Navigasi Tab Sidebar Admin
+    document.querySelectorAll('.admin-nav-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-admin-tab');
+        document.querySelectorAll('.admin-nav-btn').forEach((b) => {
+          b.classList.remove('bg-gray-900', 'text-white', 'dark:bg-white', 'dark:text-gray-900', 'font-semibold');
+          b.classList.add('font-medium');
+        });
+        btn.classList.add('bg-gray-900', 'text-white', 'dark:bg-white', 'dark:text-gray-900', 'font-semibold');
+        btn.classList.remove('font-medium');
+
+        document.querySelectorAll('.admin-tab-panel').forEach((panel) => panel.classList.add('hidden'));
+        const activePanel = document.getElementById(`tab-${target}`);
+        if (activePanel) activePanel.classList.remove('hidden');
+      });
+    });
+
+    // =========================================================================
+    // ADMIN FORMS: POPULATE & CRUD ACTIONS
+    // =========================================================================
+    function populateAllAdminForms() {
+      const p = portfolioData.profile;
+      const a = portfolioData.about;
+      const c = portfolioData.contact;
+      const creds = getSupabaseCreds();
+
+      // Tab 01
+      document.getElementById('editBrandName').value = p.brandName || '';
+      document.getElementById('editFullName').value = p.fullName || '';
+      document.getElementById('editRoleTitle').value = p.roleTitle || '';
+      document.getElementById('editMonogram').value = p.monogram || '';
+      document.getElementById('editAvatarUrl').value = p.avatarUrl || '';
+      document.getElementById('editBadgeText').value = p.badgeText || '';
+      document.getElementById('editDomain').value = p.domain || '';
+      document.getElementById('editDegreeBadge').value = p.degreeBadge || '';
+      document.getElementById('editLocation').value = p.location || '';
+      document.getElementById('editEducationSummary').value = p.educationSummary || '';
+      document.getElementById('editFaviconLetter').value = p.faviconLetter || 'B';
+      document.getElementById('editFaviconBgColor').value = p.faviconBgColor || '#111827';
+      document.getElementById('editFaviconAccentColor').value = p.faviconAccentColor || '#E11D48';
+      document.getElementById('editFaviconUrl').value = p.faviconUrl || '';
+      updateFaviconPreviewInAdmin();
+      document.getElementById('editHeroHeadline').value = p.heroHeadline || '';
+      document.getElementById('editHeroSubheadline').value = p.heroSubheadline || '';
+      document.getElementById('editPrimaryStack').value = (p.primaryStack || []).join(', ');
+      document.getElementById('editGithubUrl').value = p.githubUrl || '';
+      document.getElementById('editLinkedinUrl').value = p.linkedinUrl || '';
+      document.getElementById('editInstagramUrl').value = p.instagramUrl || '';
+
+      // Tab 02
+      document.getElementById('editAboutHeading').value = a.heading || '';
+      document.getElementById('editAboutP1').value = a.paragraph1 || '';
+      document.getElementById('editAboutP2').value = a.paragraph2 || '';
+      renderAdminStatsList();
+
+      // Tab 03
+      renderAdminSkillsList();
+
+      // Tab 04
+      renderAdminProjectsList();
+
+      // Tab 05
+      renderAdminTimelineLists();
+
+      // Tab 06
+      document.getElementById('editContactHeading').value = c.heading || '';
+      document.getElementById('editContactEmail').value = c.email || '';
+      document.getElementById('editContactWaNumber').value = c.waNumber || '';
+      document.getElementById('editContactWaNote').value = c.waNote || '';
+      document.getElementById('editContactSubheading').value = c.subheading || '';
+      document.getElementById('editFooterCopyright').value = c.footerCopyright || '';
+
+      // Tab 07
+      document.getElementById('sbUrlInput').value = creds.url || '';
+      document.getElementById('sbAnonKeyInput').value = creds.anonKey || '';
+    }
+
+    // --- TAB 01 SAVE ---
+    function saveProfileSection() {
+      portfolioData.profile = {
+        ...portfolioData.profile,
+        brandName: document.getElementById('editBrandName').value.trim() || 'Arya Bima',
+        fullName: document.getElementById('editFullName').value.trim() || 'Arya Bima Rozak',
+        roleTitle: document.getElementById('editRoleTitle').value.trim(),
+        monogram: document.getElementById('editMonogram').value.trim().toUpperCase() || 'ABR',
+        avatarUrl: document.getElementById('editAvatarUrl').value.trim(),
+        badgeText: document.getElementById('editBadgeText').value.trim(),
+        domain: document.getElementById('editDomain').value.trim(),
+        degreeBadge: document.getElementById('editDegreeBadge').value.trim(),
+        location: document.getElementById('editLocation').value.trim(),
+        educationSummary: document.getElementById('editEducationSummary').value.trim(),
+        faviconLetter: document.getElementById('editFaviconLetter').value.trim().toUpperCase() || 'B',
+        faviconBgColor: document.getElementById('editFaviconBgColor').value || '#111827',
+        faviconAccentColor: document.getElementById('editFaviconAccentColor').value || '#E11D48',
+        faviconUrl: document.getElementById('editFaviconUrl').value.trim(),
+        heroHeadline: document.getElementById('editHeroHeadline').value.trim(),
+        heroSubheadline: document.getElementById('editHeroSubheadline').value.trim(),
+        primaryStack: document.getElementById('editPrimaryStack').value.split(',').map((s) => s.trim()).filter(Boolean),
+        githubUrl: document.getElementById('editGithubUrl').value.trim(),
+        linkedinUrl: document.getElementById('editLinkedinUrl').value.trim(),
+        instagramUrl: document.getElementById('editInstagramUrl').value.trim()
+      };
+      persistPortfolioChanges('Profil & Hero diperbarui');
+    }
+
+    // --- TAB 02 STATS ---
+    function renderAdminStatsList() {
+      const container = document.getElementById('adminStatsList');
+      container.innerHTML = (portfolioData.about.stats || []).map((st, index) => `
+        <div class="p-4 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs text-swissRed font-semibold">Statistik #${index + 1}</span>
+            <button type="button" onclick="removeStatItem(${index})" class="text-xs font-mono text-gray-400 hover:text-swissRed">Hapus</button>
+          </div>
+          <input type="text" data-stat-field="value" data-stat-idx="${index}" value="${escapeHtml(st.value)}" placeholder="Angka (mis: 10+)" class="w-full px-3 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-sm font-bold" />
+          <input type="text" data-stat-field="label" data-stat-idx="${index}" value="${escapeHtml(st.label)}" placeholder="Judul Statistik" class="w-full px-3 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-sm" />
+          <input type="text" data-stat-field="desc" data-stat-idx="${index}" value="${escapeHtml(st.desc)}" placeholder="Keterangan singkat" class="w-full px-3 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-xs" />
+        </div>
+      `).join('');
+    }
+
+    function addStatItem() {
+      portfolioData.about.stats.push({ value: '100%', label: 'Statistik Baru', desc: 'Deskripsi pencapaian' });
+      renderAdminStatsList();
+    }
+
+    function removeStatItem(idx) {
+      portfolioData.about.stats.splice(idx, 1);
+      renderAdminStatsList();
+    }
+
+    function saveAboutAndStats() {
+      portfolioData.about.heading = document.getElementById('editAboutHeading').value.trim();
+      portfolioData.about.paragraph1 = document.getElementById('editAboutP1').value.trim();
+      portfolioData.about.paragraph2 = document.getElementById('editAboutP2').value.trim();
+
+      document.querySelectorAll('[data-stat-idx]').forEach((input) => {
+        const idx = Number(input.getAttribute('data-stat-idx'));
+        const field = input.getAttribute('data-stat-field');
+        if (portfolioData.about.stats[idx]) {
+          portfolioData.about.stats[idx][field] = input.value.trim();
+        }
+      });
+
+      persistPortfolioChanges('Tentang & Statistik disimpan');
+    }
+
+    // --- TAB 03 SKILLS ---
+    function renderAdminSkillsList() {
+      const container = document.getElementById('adminSkillsList');
+      container.innerHTML = (portfolioData.skills || []).map((cat, idx) => `
+        <div class="p-4 sm:p-5 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs text-swissRed font-semibold">Kategori #${idx + 1}</span>
+            <button type="button" onclick="removeSkillCategory(${idx})" class="text-xs font-mono text-gray-400 hover:text-swissRed">Hapus Kategori</button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <input type="text" data-skill-idx="${idx}" data-skill-field="code" value="${escapeHtml(cat.code)}" placeholder="Kode (01 / FRONTEND)" class="px-3 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-xs font-mono" />
+            <input type="text" data-skill-idx="${idx}" data-skill-field="title" value="${escapeHtml(cat.title)}" placeholder="Nama Kategori" class="sm:col-span-2 px-3 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-sm font-semibold" />
+          </div>
+          <div>
+            <label class="block font-mono text-[11px] text-gray-500 mb-1">Daftar Keahlian (Pisahkan dengan koma)</label>
+            <input type="text" data-skill-idx="${idx}" data-skill-field="items" value="${escapeHtml((cat.items || []).join(', '))}" class="w-full px-3 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-sm" />
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addSkillCategory() {
+      portfolioData.skills.push({
+        id: 'sk-' + Date.now(),
+        code: `0${portfolioData.skills.length + 1} / KATEGORI`,
+        title: 'Kategori Keahlian Baru',
+        items: ['Skill 1', 'Skill 2']
+      });
+      renderAdminSkillsList();
+    }
+
+    function removeSkillCategory(idx) {
+      portfolioData.skills.splice(idx, 1);
+      renderAdminSkillsList();
+    }
+
+    function saveSkillsSection() {
+      document.querySelectorAll('[data-skill-idx]').forEach((input) => {
+        const idx = Number(input.getAttribute('data-skill-idx'));
+        const field = input.getAttribute('data-skill-field');
+        if (!portfolioData.skills[idx]) return;
+        if (field === 'items') {
+          portfolioData.skills[idx].items = input.value.split(',').map((s) => s.trim()).filter(Boolean);
+        } else {
+          portfolioData.skills[idx][field] = input.value.trim();
+        }
+      });
+      persistPortfolioChanges('Daftar keahlian disimpan');
+    }
+
+    // --- TAB 04 PROJECTS ---
+    function renderAdminProjectsList() {
+      const container = document.getElementById('adminProjectsList');
+      container.innerHTML = (portfolioData.projects || []).map((proj) => `
+        <div class="p-4 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950/60 text-swissRed font-mono text-[10px] font-semibold">
+                ${escapeHtml(getCategoryLabel(proj.category))}
+              </span>
+              <span class="font-mono text-[11px] text-gray-400 truncate">${escapeHtml(proj.demoUrl || '')}</span>
+            </div>
+            <h4 class="text-sm sm:text-base font-bold mt-1 truncate">${escapeHtml(proj.title)}</h4>
+            <p class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 mt-0.5">${escapeHtml(proj.shortDesc)}</p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button type="button" onclick="openProjectEditorModal('${escapeHtml(proj.id)}')" class="px-3.5 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-xs font-mono font-semibold hover:border-gray-900">
+              Edit
+            </button>
+            <button type="button" onclick="deleteProjectItem('${escapeHtml(proj.id)}')" class="px-3.5 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-xs font-mono text-swissRed hover:border-swissRed">
+              Hapus
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openProjectEditorModal(projId = '') {
+      const form = document.getElementById('projectEditorForm');
+      form.reset();
+      document.getElementById('projEditId').value = projId;
+
+      if (projId) {
+        const proj = portfolioData.projects.find((p) => p.id === projId);
+        if (proj) {
+          document.getElementById('projectEditorModalTitle').textContent = 'Edit Proyek';
+          document.getElementById('projEditTitle').value = proj.title || '';
+          document.getElementById('projEditCategory').value = proj.category || 'web';
+          document.getElementById('projEditMockupPreset').value = proj.mockupPreset || 'web-cms';
+          document.getElementById('projEditImageUrl').value = proj.imageUrl || '';
+          document.getElementById('projEditDemoUrl').value = proj.demoUrl || '';
+          document.getElementById('projEditDemoLabel').value = proj.demoLabel || '';
+          document.getElementById('projEditTags').value = (proj.tags || []).join(', ');
+          document.getElementById('projEditShortDesc').value = proj.shortDesc || '';
+          document.getElementById('projEditChallenge').value = proj.challenge || '';
+          document.getElementById('projEditSolution').value = proj.solution || '';
+          document.getElementById('projEditResult').value = proj.result || '';
+        }
+      } else {
+        document.getElementById('projectEditorModalTitle').textContent = 'Tambah Proyek Baru';
+      }
+
+      const modal = document.getElementById('projectEditorModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProjectEditorModal() {
+      const modal = document.getElementById('projectEditorModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    document.getElementById('projectEditorForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = document.getElementById('projEditId').value;
+      const payload = {
+        id: id || 'proj-' + Date.now(),
+        title: document.getElementById('projEditTitle').value.trim(),
+        category: document.getElementById('projEditCategory').value,
+        mockupPreset: document.getElementById('projEditMockupPreset').value,
+        imageUrl: document.getElementById('projEditImageUrl').value.trim(),
+        demoUrl: document.getElementById('projEditDemoUrl').value.trim() || '#kontak',
+        demoLabel: document.getElementById('projEditDemoLabel').value.trim() || 'Lihat Detail ↗',
+        tags: document.getElementById('projEditTags').value.split(',').map((s) => s.trim()).filter(Boolean),
+        shortDesc: document.getElementById('projEditShortDesc').value.trim(),
+        challenge: document.getElementById('projEditChallenge').value.trim(),
+        solution: document.getElementById('projEditSolution').value.trim(),
+        result: document.getElementById('projEditResult').value.trim()
+      };
+
+      if (id) {
+        const idx = portfolioData.projects.findIndex((p) => p.id === id);
+        if (idx !== -1) portfolioData.projects[idx] = payload;
+      } else {
+        portfolioData.projects.unshift(payload);
+      }
+
+      closeProjectEditorModal();
+      renderAdminProjectsList();
+      persistPortfolioChanges(id ? 'Proyek diperbarui' : 'Proyek baru ditambahkan');
+    });
+
+    function deleteProjectItem(projId) {
+      portfolioData.projects = portfolioData.projects.filter((p) => p.id !== projId);
+      renderAdminProjectsList();
+      persistPortfolioChanges('Proyek dihapus');
+    }
+
+    // --- TAB 05 TIMELINE ---
+    function renderAdminTimelineLists() {
+      const renderGroup = (type, containerId) => {
+        const list = portfolioData.timeline[type] || [];
+        document.getElementById(containerId).innerHTML = list.map((item, idx) => `
+          <div class="p-4 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-swissRed font-semibold">#${idx + 1}</span>
+              <button type="button" onclick="removeTimelineItem('${type}', ${idx})" class="text-xs font-mono text-gray-400 hover:text-swissRed">Hapus</button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" data-tl-type="${type}" data-tl-idx="${idx}" data-tl-field="period" value="${escapeHtml(item.period)}" placeholder="Periode (mis: 2024 — SEKARANG)" class="px-3 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-xs font-mono" />
+              <input type="text" data-tl-type="${type}" data-tl-idx="${idx}" data-tl-field="org" value="${escapeHtml(item.org)}" placeholder="Instansi / Kampus" class="px-3 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-xs" />
+            </div>
+            <input type="text" data-tl-type="${type}" data-tl-idx="${idx}" data-tl-field="title" value="${escapeHtml(item.title)}" placeholder="Posisi / Gelar" class="w-full px-3 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-sm font-semibold" />
+            <textarea rows="2" data-tl-type="${type}" data-tl-idx="${idx}" data-tl-field="desc" placeholder="Deskripsi singkat" class="w-full px-3 py-2 rounded-lg hairline-all bg-white dark:bg-gray-950 text-xs">${escapeHtml(item.desc)}</textarea>
+          </div>
+        `).join('');
+      };
+
+      renderGroup('experience', 'adminExperienceList');
+      renderGroup('education', 'adminEducationList');
+    }
+
+    function addTimelineItem(type) {
+      portfolioData.timeline[type].unshift({
+        id: `${type}-${Date.now()}`,
+        period: 'TAHUN — SEKARANG',
+        title: type === 'experience' ? 'Posisi Baru' : 'Pendidikan / Sertifikasi Baru',
+        org: 'Nama Institusi',
+        desc: 'Deskripsi peran atau pencapaian.'
+      });
+      renderAdminTimelineLists();
+    }
+
+    function removeTimelineItem(type, idx) {
+      portfolioData.timeline[type].splice(idx, 1);
+      renderAdminTimelineLists();
+    }
+
+    function saveTimelineSection() {
+      document.querySelectorAll('[data-tl-type]').forEach((el) => {
+        const type = el.getAttribute('data-tl-type');
+        const idx = Number(el.getAttribute('data-tl-idx'));
+        const field = el.getAttribute('data-tl-field');
+        if (portfolioData.timeline[type] && portfolioData.timeline[type][idx]) {
+          portfolioData.timeline[type][idx][field] = el.value.trim();
+        }
+      });
+      persistPortfolioChanges('Pengalaman & Pendidikan disimpan');
+    }
+
+    // --- TAB 06 CONTACT & INBOX ---
+    function saveContactSettings() {
+      portfolioData.contact = {
+        ...portfolioData.contact,
+        heading: document.getElementById('editContactHeading').value.trim(),
+        email: document.getElementById('editContactEmail').value.trim(),
+        waNumber: document.getElementById('editContactWaNumber').value.trim(),
+        waNote: document.getElementById('editContactWaNote').value.trim(),
+        subheading: document.getElementById('editContactSubheading').value.trim(),
+        footerCopyright: document.getElementById('editFooterCopyright').value.trim()
+      };
+      persistPortfolioChanges('Pengaturan kontak disimpan');
+    }
+
+    async function refreshInboxMessages() {
+      let messages = [];
+      try {
+        messages = JSON.parse(localStorage.getItem(STORAGE_KEYS.MESSAGES) || '[]');
+      } catch (e) {}
+
+      if (supabaseClient && isSupabaseConnected && isSupabaseAuthenticated) {
+        try {
+          const { data, error } = await supabaseClient
+            .from('portfolio_messages')
+            .select('*')
+            .order('created_at', { ascending: false });
+          if (!error && Array.isArray(data)) {
+            messages = data;
+            localStorage.setItem(STORAGE_KEYS.MESSAGES, JSON.stringify(data));
+          }
+        } catch (err) {}
+      }
+
+      document.getElementById('unreadMsgCountBadge').textContent = messages.length;
+      const container = document.getElementById('adminInboxList');
+
+      if (!messages.length) {
+        container.innerHTML = `<div class="p-6 rounded-xl hairline-all text-center text-xs font-mono text-gray-500">Belum ada pesan masuk dari formulir kontak.</div>`;
+        return;
+      }
+
+      container.innerHTML = messages.map((m) => `
+        <div class="p-4 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="text-sm font-bold">${escapeHtml(m.sender_name)}</span>
+              <span class="font-mono text-xs text-swissRed ml-2">${escapeHtml(m.sender_email)}</span>
+            </div>
+            <span class="font-mono text-[11px] text-gray-400">${new Date(m.created_at).toLocaleString('id-ID')}</span>
+          </div>
+          <div class="text-xs font-semibold">Subjek: ${escapeHtml(m.subject)}</div>
+          <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">${escapeHtml(m.message)}</p>
+          <div class="pt-1 flex gap-2">
+            <a href="mailto:${encodeURIComponent(m.sender_email)}?subject=Re:%20${encodeURIComponent(m.subject)}" class="px-3 py-1 rounded bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-[11px] font-mono font-semibold">
+              Balas Email ↗
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // --- TAB 07 SUPABASE CREDENTIALS & BACKUP ---
+    async function saveSupabaseCredentials() {
+      const url = document.getElementById('sbUrlInput').value.trim().replace(/\/+$/, '');
+      const anonKey = document.getElementById('sbAnonKeyInput').value.trim();
+
+      if (!url || !anonKey) {
+        showToast('Mohon isi Project URL dan Anon/Publishable Key Supabase.');
+        return;
+      }
+
+      localStorage.setItem(STORAGE_KEYS.SB_CREDS, JSON.stringify({ url, anonKey }));
+      await initSupabaseConnection(false);
+    }
+
+    async function pushAllDataToSupabase() {
+      if (!supabaseClient || !isSupabaseConnected) {
+        showToast('Hubungkan Supabase terlebih dahulu.');
+        return;
+      }
+      if (!isSupabaseAuthenticated) {
+        showToast('Silakan Keluar dan Login ulang menggunakan Email & Password Supabase Auth Anda terlebih dahulu.');
+        return;
+      }
+      await persistPortfolioChanges('Seluruh data berhasil di-push ke Supabase');
+    }
+
+    function disconnectSupabase() {
+      localStorage.removeItem(STORAGE_KEYS.SB_CREDS);
+      document.getElementById('sbUrlInput').value = DEFAULT_SUPABASE_URL;
+      document.getElementById('sbAnonKeyInput').value = DEFAULT_SUPABASE_ANON_KEY;
+      initSupabaseConnection(true);
+      showToast('Kredensial dikembalikan ke konfigurasi Supabase bawaan.');
+    }
+
+    function copySqlSchema() {
+      const sqlText = document.getElementById('supabaseSqlCode').textContent;
+      copyTextToClipboard(sqlText, 'Kode SQL Supabase tersalin!');
+    }
+
+    function exportPortfolioJson() {
+      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(portfolioData, null, 2));
+      const dlAnchor = document.createElement('a');
+      dlAnchor.setAttribute('href', dataStr);
+      dlAnchor.setAttribute('download', 'portfolio-aryabima-backup.json');
+      document.body.appendChild(dlAnchor);
+      dlAnchor.click();
+      dlAnchor.remove();
+      showToast('File JSON cadangan diunduh!');
+    }
+
+    function importPortfolioJson(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const imported = JSON.parse(e.target.result);
+          portfolioData = {
+            ...JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA)),
+            ...imported
+          };
+          populateAllAdminForms();
+          persistPortfolioChanges('Data JSON berhasil diimpor');
+        } catch (err) {
+          showToast('Format file JSON tidak valid.');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function resetToDefaultPortfolio() {
+      portfolioData = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA));
+      populateAllAdminForms();
+      persistPortfolioChanges('Data dikembalikan ke pengaturan awal');
+    }
+
+    // =========================================================================
+    // GLOBAL KEYBOARD SHORTCUTS & INITIALIZATION
+    // =========================================================================
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeProjectModal();
+        closeProjectEditorModal();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME) || 'light';
+      applyTheme(savedTheme);
+      renderAllPublicSections();
+
+      await initSupabaseConnection(true);
+
+      if (window.location.hash === '#admin') {
+        openAdminView();
+      }
+    });
+  </script>
+</body>
+</html>

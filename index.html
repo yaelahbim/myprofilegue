@@ -125,7 +125,7 @@
        PUBLIC PORTFOLIO VIEW
   ===================================================================== -->
   <div id="publicApp">
-    <!-- 1. NAVBAR STICKY BERSIH -->
+    <!-- 1. NAVBAR STICKY BERSIH (TANPA TOMBOL ADMIN PUBLIK) -->
     <header class="sticky top-0 z-40 bg-[#F7F7F5]/90 dark:bg-[#0A0A0B]/90 backdrop-blur-md hairline-b">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 sm:h-18">
@@ -155,19 +155,6 @@
               <svg id="moonIcon" class="w-4 h-4 text-zinc-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
-            </button>
-
-            <button
-              type="button"
-              onclick="openAdminView()"
-              class="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-lg hairline-all bg-white dark:bg-zinc-900 hover:border-swissRed hover:text-swissRed text-xs font-mono font-semibold transition-colors"
-              title="Masuk ke Admin Panel CMS"
-            >
-              <svg class="w-3.5 h-3.5 text-swissRed" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
-              <span>Admin</span>
             </button>
 
             <a
@@ -200,13 +187,10 @@
           <a href="#tentang" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">Tentang</a>
           <a href="#pengalaman" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">Pengalaman</a>
           <a href="#kontak" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">Kontak</a>
-          <div class="pt-2 px-3 flex gap-2">
-            <a href="#kontak" class="mobile-link flex-1 text-center py-2.5 rounded-lg bg-swissRed text-white text-sm font-semibold">
+          <div class="pt-2 px-3">
+            <a href="#kontak" class="mobile-link block w-full text-center py-2.5 rounded-lg bg-swissRed text-white text-sm font-semibold">
               Hubungi Saya
             </a>
-            <button type="button" onclick="openAdminView()" class="px-4 py-2.5 rounded-lg hairline-all text-xs font-mono font-semibold">
-              Admin CMS
-            </button>
           </div>
         </div>
       </div>
@@ -262,7 +246,7 @@
               <div id="heroSocialLinks" class="pt-3 flex flex-wrap items-center gap-2.5"></div>
             </div>
 
-            <!-- Kolom Kanan: Kartu Indeks Ringkas (Tanpa Data Sensitif) -->
+            <!-- Kolom Kanan: Kartu Indeks Ringkas -->
             <div class="lg:col-span-4">
               <div class="swiss-card rounded-2xl p-6 relative overflow-hidden">
                 <div class="flex items-center justify-between pb-4 hairline-b">
@@ -314,7 +298,7 @@
         </div>
       </section>
 
-      <!-- 3. PROYEK PILIHAN (DIUTAMAKAN DI ATAS AGAR LANGSUNG FOKUS PADA KARYA) -->
+      <!-- 3. PROYEK PILIHAN -->
       <section id="proyek" class="py-16 sm:py-24 hairline-b">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
@@ -405,7 +389,7 @@
         </div>
       </section>
 
-      <!-- 7. KONTAK PROFESIONAL (TANPA NOMOR PRIBADI / WHATSAPP) -->
+      <!-- 7. KONTAK PROFESIONAL -->
       <section id="kontak" class="py-16 sm:py-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
@@ -482,6 +466,12 @@
                 </p>
 
                 <form id="contactForm" class="space-y-4">
+                  <!-- Honeypot Anti-Spam (Tersembunyi dari Pengguna, Menjebak Bot) -->
+                  <div class="hidden" aria-hidden="true">
+                    <label for="inputWebsiteHoneypot">Jangan isi kolom ini</label>
+                    <input id="inputWebsiteHoneypot" type="text" name="website_url" tabindex="-1" autocomplete="off" />
+                  </div>
+
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label for="inputNama" class="block text-xs font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-300 mb-1.5">
@@ -582,6 +572,7 @@
       </section>
     </main>
 
+    <!-- FOOTER BERSIH (TANPA TOMBOL ADMIN) -->
     <footer class="hairline-t py-8 bg-white dark:bg-[#0A0A0B]">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500 dark:text-zinc-400">
         <div class="flex items-center gap-2">
@@ -595,7 +586,6 @@
           <a href="#keahlian" class="hover:text-swissRed transition-colors">Keahlian</a>
           <a href="#tentang" class="hover:text-swissRed transition-colors">Tentang</a>
           <a href="#pengalaman" class="hover:text-swissRed transition-colors">Pengalaman</a>
-          <button type="button" onclick="openAdminView()" class="hover:text-swissRed transition-colors">Admin CMS</button>
           <a href="#beranda" class="text-swissRed font-semibold hover:underline">Ke Atas ↑</a>
         </div>
       </div>
@@ -603,7 +593,7 @@
   </div>
 
   <!-- =====================================================================
-       ADMIN PANEL CMS VIEW
+       ADMIN PANEL CMS VIEW (AKSES VIA #admin)
   ===================================================================== -->
   <div id="adminApp" class="hidden min-h-screen bg-[#FAFAFA] dark:bg-[#0B0F19]">
     <header class="sticky top-0 z-40 bg-white/95 dark:bg-gray-950/95 backdrop-blur-md hairline-b">
@@ -615,7 +605,7 @@
           </span>
           <span id="adminCloudStatusBadge" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md hairline-all font-mono text-[11px]">
             <span id="adminCloudStatusDot" class="w-2 h-2 rounded-full bg-amber-500"></span>
-            <span id="adminCloudStatusLabel">Mode Preview Lokal</span>
+            <span id="adminCloudStatusLabel">Menunggu Autentikasi</span>
           </span>
         </div>
 
@@ -647,14 +637,14 @@
       </div>
     </header>
 
-    <!-- SCREEN A: LOGIN ADMIN -->
+    <!-- SCREEN A: LOGIN ADMIN (SUPABASE AUTH ONLY) -->
     <div id="adminLoginScreen" class="max-w-md mx-auto px-4 py-12 sm:py-20">
       <div class="swiss-panel rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
         <div class="space-y-1.5">
-          <span class="font-mono text-xs uppercase tracking-widest text-swissRed font-semibold">AUTENTIKASI ADMIN</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-swissRed font-semibold">AUTENTIKASI SUPABASE</span>
           <h1 class="text-2xl font-extrabold tracking-tight">Masuk ke Panel Kontrol</h1>
           <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-            Kelola seluruh konten portofolio, studi kasus proyek, pengalaman, dan integrasi Supabase Cloud.
+            Gunakan email dan kata sandi admin yang terdaftar pada proyek Supabase Anda.
           </p>
         </div>
 
@@ -667,7 +657,7 @@
               id="adminEmailInput"
               type="email"
               required
-              placeholder="admin@domain.com"
+              placeholder="admin@masbima.my.id"
               class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
             />
           </div>
@@ -679,7 +669,7 @@
               id="adminPasswordInput"
               type="password"
               required
-              placeholder="Masukkan kata sandi"
+              placeholder="Masukkan kata sandi Supabase"
               class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
             />
           </div>
@@ -689,7 +679,7 @@
             id="adminLoginSubmitBtn"
             class="w-full py-3 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-sm font-semibold transition-colors"
           >
-            Masuk ke Dashboard
+            Masuk ke Dashboard Cloud
           </button>
         </form>
       </div>
@@ -1210,14 +1200,6 @@ CREATE TABLE IF NOT EXISTS public.portfolio_visits (
   visited_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- Jika tabel portfolio_visits sudah terlanjur dibuat sebelumnya, jalankan ALTER berikut:
-ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS os_browser TEXT;
-ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS city TEXT;
-ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS region TEXT;
-ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS country TEXT;
-ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS country_code TEXT;
-ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS timezone TEXT;
-
 -- 4. Aktifkan Row Level Security (RLS)
 ALTER TABLE public.portfolio_state ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.portfolio_messages ENABLE ROW LEVEL SECURITY;
@@ -1470,7 +1452,6 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
       VISITS: 'aryabima_portfolio_visits_v1',
       VISIT_SESSION: 'aryabima_visit_recorded_v1',
       SB_CREDS: 'aryabima_supabase_creds_v1',
-      ADMIN_SESSION: 'aryabima_admin_session_v1',
       THEME: 'aryabima_theme'
     };
 
@@ -1662,7 +1643,6 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
     let supabaseClient = null;
     let isSupabaseConnected = false;
     let isSupabaseAuthenticated = false;
-    let isAdminLoggedIn = sessionStorage.getItem(STORAGE_KEYS.ADMIN_SESSION) === 'true';
 
     // =========================================================================
     // HELPER: PENYIMPANAN LOKAL & SUPABASE CLIENT
@@ -1737,13 +1717,7 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
         }
 
         const { data: sessionData } = await supabaseClient.auth.getSession();
-        if (sessionData && sessionData.session) {
-          isSupabaseAuthenticated = true;
-          isAdminLoggedIn = true;
-          sessionStorage.setItem(STORAGE_KEYS.ADMIN_SESSION, 'true');
-        } else {
-          isSupabaseAuthenticated = false;
-        }
+        isSupabaseAuthenticated = Boolean(sessionData && sessionData.session);
 
         updateSyncBadges();
         if (!silent) showToast('Terhubung ke Supabase Cloud!');
@@ -1763,60 +1737,43 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
       saveLocalPortfolioData();
       renderAllPublicSections();
 
-      if (supabaseClient && isSupabaseConnected) {
-        if (!isSupabaseAuthenticated) {
-          showToast('Tersimpan lokal. Login menggunakan akun Supabase Auth untuk sinkron ke Cloud!');
-          return;
-        }
-
-        try {
-          const { error } = await supabaseClient
-            .from('portfolio_state')
-            .upsert({
-              id: 'main',
-              content: portfolioData,
-              updated_at: new Date().toISOString()
-            });
-
-          if (error) {
-            showToast(`Tersimpan lokal (Cloud: ${error.message})`);
-            return;
-          }
-          showToast(`${successMessage} (Tersinkron ke Supabase Cloud)`);
-          return;
-        } catch (err) {
-          showToast('Tersimpan di penyimpanan lokal.');
-          return;
-        }
+      if (!supabaseClient || !isSupabaseConnected || !isSupabaseAuthenticated) {
+        showToast('Sesi autentikasi berakhir. Silakan login ulang ke Supabase Auth.');
+        return;
       }
 
-      showToast(`${successMessage} (Mode Lokal)`);
+      try {
+        const { error } = await supabaseClient
+          .from('portfolio_state')
+          .upsert({
+            id: 'main',
+            content: portfolioData,
+            updated_at: new Date().toISOString()
+          });
+
+        if (error) {
+          showToast(`Gagal sinkron Cloud: ${error.message}`);
+          return;
+        }
+        showToast(`${successMessage} (Tersinkron ke Supabase Cloud)`);
+      } catch (err) {
+        showToast('Terjadi kesalahan jaringan saat menyimpan ke Cloud.');
+      }
     }
 
     function updateSyncBadges() {
-      const pubDot = document.getElementById('publicSyncDot');
-      const pubText = document.getElementById('publicSyncText');
       const admDot = document.getElementById('adminCloudStatusDot');
       const admLabel = document.getElementById('adminCloudStatusLabel');
 
-      if (isSupabaseConnected) {
-        if (pubDot) pubDot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-500';
-        if (pubText) pubText.textContent = 'Supabase Live';
-        if (admDot) {
-          admDot.className = isSupabaseAuthenticated
-            ? 'w-2 h-2 rounded-full bg-emerald-500'
-            : 'w-2 h-2 rounded-full bg-amber-500';
-        }
-        if (admLabel) {
-          admLabel.textContent = isSupabaseAuthenticated
-            ? 'Terhubung & Terautentikasi: Supabase Cloud'
-            : 'Terhubung (Login Supabase Auth untuk Sync)';
-        }
-      } else {
-        if (pubDot) pubDot.className = 'w-1.5 h-1.5 rounded-full bg-amber-500';
-        if (pubText) pubText.textContent = 'Lokal';
+      if (isSupabaseConnected && isSupabaseAuthenticated) {
+        if (admDot) admDot.className = 'w-2 h-2 rounded-full bg-emerald-500';
+        if (admLabel) admLabel.textContent = 'Terautentikasi: Supabase Cloud';
+      } else if (isSupabaseConnected) {
         if (admDot) admDot.className = 'w-2 h-2 rounded-full bg-amber-500';
-        if (admLabel) admLabel.textContent = 'Mode Preview Lokal';
+        if (admLabel) admLabel.textContent = 'Menunggu Login Supabase Auth';
+      } else {
+        if (admDot) admDot.className = 'w-2 h-2 rounded-full bg-rose-500';
+        if (admLabel) admLabel.textContent = 'Supabase Tidak Terhubung';
       }
     }
 
@@ -2285,7 +2242,7 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
     });
 
     // =========================================================================
-    // FORMULIR KONTAK PUBLIK & COPY BUTTONS
+    // FORMULIR KONTAK PUBLIK (DENGAN HONEYPOT ANTI-SPAM) & COPY BUTTONS
     // =========================================================================
     document.getElementById('copyEmailBtn').addEventListener('click', () => {
       copyTextToClipboard(portfolioData.contact.email, 'Alamat email berhasil disalin!');
@@ -2297,6 +2254,14 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
 
     document.getElementById('contactForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      // Cek Honeypot Anti-Spam: jika terisi oleh bot, hentikan proses tanpa error
+      const honeypotVal = document.getElementById('inputWebsiteHoneypot').value;
+      if (honeypotVal && honeypotVal.trim() !== '') {
+        document.getElementById('contactForm').reset();
+        return;
+      }
+
       const nama = document.getElementById('inputNama').value.trim();
       const email = document.getElementById('inputEmail').value.trim();
       const subjek = document.getElementById('inputSubjek').value.trim();
@@ -2346,14 +2311,14 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
     });
 
     // =========================================================================
-    // ADMIN PANEL NAVIGATION & AUTHENTICATION
+    // ADMIN PANEL NAVIGATION & AUTHENTICATION (HANYA VIA SUPABASE AUTH)
     // =========================================================================
     function openAdminView() {
       document.getElementById('publicApp').classList.add('hidden');
       document.getElementById('adminApp').classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'instant' });
 
-      if (isAdminLoggedIn) {
+      if (isSupabaseAuthenticated) {
         showAdminDashboard();
       } else {
         document.getElementById('adminLoginScreen').classList.remove('hidden');
@@ -2363,14 +2328,15 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
     }
 
     function closeAdminView() {
+      if (window.location.hash === '#admin') {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
       document.getElementById('adminApp').classList.add('hidden');
       document.getElementById('publicApp').classList.remove('hidden');
       renderAllPublicSections();
     }
 
     function showAdminDashboard() {
-      isAdminLoggedIn = true;
-      sessionStorage.setItem(STORAGE_KEYS.ADMIN_SESSION, 'true');
       document.getElementById('adminLoginScreen').classList.add('hidden');
       document.getElementById('adminDashboardScreen').classList.remove('hidden');
       document.getElementById('adminLogoutBtn').classList.remove('hidden');
@@ -2379,20 +2345,11 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
       refreshAnalyticsDashboard();
     }
 
-    function enterDemoAdminMode() {
-      isSupabaseAuthenticated = false;
-      updateSyncBadges();
-      showAdminDashboard();
-      showToast('Masuk ke Mode Preview Lokal Admin.');
-    }
-
     async function handleAdminLogout() {
       if (supabaseClient) {
         try { await supabaseClient.auth.signOut(); } catch (e) {}
       }
       isSupabaseAuthenticated = false;
-      isAdminLoggedIn = false;
-      sessionStorage.removeItem(STORAGE_KEYS.ADMIN_SESSION);
       updateSyncBadges();
       document.getElementById('adminDashboardScreen').classList.add('hidden');
       document.getElementById('adminLogoutBtn').classList.add('hidden');
@@ -2405,31 +2362,34 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
       const email = document.getElementById('adminEmailInput').value.trim();
       const password = document.getElementById('adminPasswordInput').value;
 
-      if (supabaseClient && isSupabaseConnected && password !== 'admin123') {
-        const btn = document.getElementById('adminLoginSubmitBtn');
-        btn.textContent = 'Memverifikasi Supabase Auth...';
-        const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
-        btn.textContent = 'Masuk ke Dashboard Cloud';
-
-        if (!error) {
-          isSupabaseAuthenticated = true;
-          updateSyncBadges();
-          showAdminDashboard();
-          showToast('Login Supabase Auth berhasil! Mode Cloud aktif.');
-          return;
-        } else {
-          showToast(`Gagal login Supabase: ${error.message}`);
-          return;
-        }
+      if (!supabaseClient || !isSupabaseConnected) {
+        showToast('Koneksi Supabase belum siap. Periksa jaringan Anda.');
+        return;
       }
 
-      if (password === 'admin123') {
-        isSupabaseAuthenticated = false;
+      const btn = document.getElementById('adminLoginSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Memverifikasi Supabase Auth...';
+
+      const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+      btn.disabled = false;
+      btn.textContent = 'Masuk ke Dashboard Cloud';
+
+      if (!error) {
+        isSupabaseAuthenticated = true;
         updateSyncBadges();
         showAdminDashboard();
-        showToast('Login Mode Lokal (Gunakan akun Supabase Auth agar tersimpan ke Cloud).');
+        showToast('Login berhasil! Mode Supabase Cloud aktif.');
       } else {
-        showToast('Sandi salah. Gunakan password akun Supabase Auth Anda.');
+        showToast(`Autentikasi ditolak: ${error.message}`);
+      }
+    });
+
+    // Deteksi perubahan hash URL secara dinamis (mis. user mengetik #admin)
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#admin') {
+        openAdminView();
       }
     });
 
@@ -2506,7 +2466,7 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
       document.getElementById('editContactSubheading').value = c.subheading || '';
       document.getElementById('editFooterCopyright').value = c.footerCopyright || '';
 
-      // Tab 07
+      // Tab 08
       document.getElementById('sbUrlInput').value = creds.url || '';
       document.getElementById('sbAnonKeyInput').value = creds.anonKey || '';
     }
@@ -2843,7 +2803,7 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
       `).join('');
     }
 
-    // --- TAB 07 SUPABASE CREDENTIALS & BACKUP ---
+    // --- TAB 08 SUPABASE CREDENTIALS & BACKUP ---
     async function saveSupabaseCredentials() {
       const url = document.getElementById('sbUrlInput').value.trim().replace(/\/+$/, '');
       const anonKey = document.getElementById('sbAnonKeyInput').value.trim();
@@ -2858,12 +2818,8 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
     }
 
     async function pushAllDataToSupabase() {
-      if (!supabaseClient || !isSupabaseConnected) {
-        showToast('Hubungkan Supabase terlebih dahulu.');
-        return;
-      }
-      if (!isSupabaseAuthenticated) {
-        showToast('Silakan Keluar dan Login ulang menggunakan Email & Password Supabase Auth Anda terlebih dahulu.');
+      if (!supabaseClient || !isSupabaseConnected || !isSupabaseAuthenticated) {
+        showToast('Pastikan Anda sudah login menggunakan akun Supabase Auth.');
         return;
       }
       await persistPortfolioChanges('Seluruh data berhasil di-push ke Supabase');
@@ -2999,7 +2955,6 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
     }
 
     async function trackVisitorHit() {
-      // Hindari penghitungan ganda saat refresh dalam sesi tab yang sama, dan abaikan akses langsung ke #admin
       if (window.location.hash === '#admin') return;
       if (sessionStorage.getItem(STORAGE_KEYS.VISIT_SESSION) === 'true') return;
       sessionStorage.setItem(STORAGE_KEYS.VISIT_SESSION, 'true');
@@ -3096,7 +3051,6 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
       const countryMap = {};
       const cityMap = {};
 
-      // Siapkan 7 slot hari terakhir
       const dailyBuckets = [];
       for (let i = 6; i >= 0; i--) {
         const d = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
@@ -3141,7 +3095,6 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
       document.getElementById('statVisitsTotal').textContent = totalCount;
       document.getElementById('statDeviceRatio').textContent = `${mobilePct}% / ${desktopPct}%`;
 
-      // Render grafik batang 7 hari
       const maxBucket = Math.max(...dailyBuckets.map((b) => b.count), 1);
       document.getElementById('analyticsBarChart').innerHTML = dailyBuckets.map((b) => {
         const heightPct = Math.max(Math.round((b.count / maxBucket) * 100), 6);
@@ -3155,7 +3108,6 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
         `;
       }).join('');
 
-      // Render daftar Negara Asal Pengunjung
       const sortedCountries = Object.entries(countryMap).sort((a, b) => b[1] - a[1]).slice(0, 6);
       const countryListEl = document.getElementById('analyticsCountryList');
       if (!sortedCountries.length) {
@@ -3178,7 +3130,6 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
         }).join('');
       }
 
-      // Render daftar Kota / Wilayah Teratas
       const sortedCities = Object.entries(cityMap).sort((a, b) => b[1] - a[1]).slice(0, 6);
       const cityListEl = document.getElementById('analyticsCityList');
       if (!sortedCities.length) {
@@ -3200,7 +3151,6 @@ CREATE POLICY "Admin bisa membaca trafik kunjungan"
         }).join('');
       }
 
-      // Render tabel log kunjungan terbaru
       const tbody = document.getElementById('analyticsLogTableBody');
       const recent = visits.slice(0, 20);
       if (!recent.length) {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arya Bima Rozak — Frontend Developer & Visual Designers</title>
+  <title>Arya Bima Rozak — Frontend Developer & Visual Designer</title>
   <meta name="description" content="Portofolio pribadi Arya Bima Rozak (masbima.my.id) — Lulusan S.Kom Sistem Informasi UBSI, Frontend Developer & Visual Designer berbasis di Depok, Jawa Barat." />
   <link id="dynamicFavicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111827'/%3E%3Ctext x='28' y='44' text-anchor='middle' fill='%23FAFAFA' font-family='Inter,Arial,sans-serif' font-size='34' font-weight='800'%3EB%3C/text%3E%3Ccircle cx='48' cy='41' r='5' fill='%23E11D48'/%3E%3C/svg%3E" />
 
@@ -40,24 +40,25 @@
 
   <style>
     :root {
-      --bg-page: #FAFAFA;
+      --bg-page: #F7F7F5;
       --bg-card: #FFFFFF;
-      --bg-subtle: #F4F4F5;
-      --text-primary: #111827;
-      --text-secondary: #4B5563;
+      --bg-subtle: #EFEFED;
+      --text-primary: #111111;
+      --text-secondary: #52525B;
       --border-hairline: #E4E4E7;
-      --border-strong: #18181B;
+      --border-strong: #111111;
       --accent-red: #E11D48;
+      --card-radius: 1rem;
     }
 
     html.dark {
-      --bg-page: #0B0F19;
-      --bg-card: #111827;
-      --bg-subtle: #1F2937;
-      --text-primary: #F9FAFB;
-      --text-secondary: #9CA3AF;
+      --bg-page: #0A0A0B;
+      --bg-card: #121214;
+      --bg-subtle: #1C1C1F;
+      --text-primary: #F4F4F5;
+      --text-secondary: #A1A1AA;
       --border-hairline: #27272A;
-      --border-strong: #E4E4E7;
+      --border-strong: #F4F4F5;
       --accent-red: #E11D48;
     }
 
@@ -70,6 +71,12 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    .swiss-grid-bg {
+      background-image: linear-gradient(to right, rgba(120, 120, 128, 0.06) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(120, 120, 128, 0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
     .swiss-card {
       background-color: var(--bg-card);
       border: 1px solid var(--border-hairline);
@@ -79,11 +86,11 @@
     .swiss-card:hover {
       border-color: var(--border-strong);
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.09);
     }
 
     html.dark .swiss-card:hover {
-      box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.55);
     }
 
     .swiss-panel {
@@ -119,7 +126,7 @@
   ===================================================================== -->
   <div id="publicApp">
     <!-- 1. NAVBAR STICKY BERSIH -->
-    <header class="sticky top-0 z-40 bg-[#FAFAFA]/90 dark:bg-[#0B0F19]/90 backdrop-blur-md hairline-b">
+    <header class="sticky top-0 z-40 bg-[#F7F7F5]/90 dark:bg-[#0A0A0B]/90 backdrop-blur-md hairline-b">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 sm:h-18">
           <a href="#beranda" id="navBrandLogo" class="flex items-center gap-1.5 text-xl font-extrabold tracking-tight focus:outline-none">
@@ -127,9 +134,9 @@
           </a>
 
           <nav aria-label="Navigasi Utama" class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-600 dark:text-gray-300">
-            <a href="#tentang" class="hover:text-swissRed transition-colors">Tentang</a>
-            <a href="#keahlian" class="hover:text-swissRed transition-colors">Keahlian</a>
             <a href="#proyek" class="hover:text-swissRed transition-colors">Proyek</a>
+            <a href="#keahlian" class="hover:text-swissRed transition-colors">Keahlian</a>
+            <a href="#tentang" class="hover:text-swissRed transition-colors">Tentang</a>
             <a href="#pengalaman" class="hover:text-swissRed transition-colors">Pengalaman</a>
             <a href="#kontak" class="hover:text-swissRed transition-colors">Kontak</a>
           </nav>
@@ -139,13 +146,13 @@
               id="themeToggle"
               type="button"
               aria-label="Ganti mode terang atau gelap"
-              class="p-2.5 rounded-lg hairline-all bg-white dark:bg-gray-900 hover:border-gray-900 dark:hover:border-gray-300 transition-colors"
+              class="p-2.5 rounded-lg hairline-all bg-white dark:bg-zinc-900 hover:border-zinc-900 dark:hover:border-zinc-300 transition-colors"
             >
               <svg id="sunIcon" class="w-4 h-4 hidden text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="4"></circle>
                 <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
               </svg>
-              <svg id="moonIcon" class="w-4 h-4 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <svg id="moonIcon" class="w-4 h-4 text-zinc-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
             </button>
@@ -153,7 +160,7 @@
             <button
               type="button"
               onclick="openAdminView()"
-              class="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-lg hairline-all bg-white dark:bg-gray-900 hover:border-swissRed hover:text-swissRed text-xs font-mono font-semibold transition-colors"
+              class="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-lg hairline-all bg-white dark:bg-zinc-900 hover:border-swissRed hover:text-swissRed text-xs font-mono font-semibold transition-colors"
               title="Masuk ke Admin Panel CMS"
             >
               <svg class="w-3.5 h-3.5 text-swissRed" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -165,7 +172,7 @@
 
             <a
               href="#kontak"
-              class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-gray-900 text-white dark:bg-white dark:text-gray-900 hover:bg-swissRed dark:hover:bg-swissRed dark:hover:text-white text-sm font-semibold transition-colors"
+              class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 hover:bg-swissRed dark:hover:bg-swissRed dark:hover:text-white text-sm font-semibold transition-colors"
             >
               Hubungi Saya
             </a>
@@ -175,7 +182,7 @@
               type="button"
               aria-label="Buka menu navigasi"
               aria-expanded="false"
-              class="md:hidden p-2.5 rounded-lg hairline-all bg-white dark:bg-gray-900"
+              class="md:hidden p-2.5 rounded-lg hairline-all bg-white dark:bg-zinc-900"
             >
               <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -188,11 +195,11 @@
         </div>
 
         <div id="mobileMenu" class="hidden md:hidden pb-5 pt-2 hairline-t space-y-1">
-          <a href="#tentang" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Tentang</a>
-          <a href="#keahlian" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Keahlian</a>
-          <a href="#proyek" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Proyek</a>
-          <a href="#pengalaman" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Pengalaman</a>
-          <a href="#kontak" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Kontak</a>
+          <a href="#proyek" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">Proyek</a>
+          <a href="#keahlian" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">Keahlian</a>
+          <a href="#tentang" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">Tentang</a>
+          <a href="#pengalaman" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">Pengalaman</a>
+          <a href="#kontak" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">Kontak</a>
           <div class="pt-2 px-3 flex gap-2">
             <a href="#kontak" class="mobile-link flex-1 text-center py-2.5 rounded-lg bg-swissRed text-white text-sm font-semibold">
               Hubungi Saya
@@ -206,102 +213,97 @@
     </header>
 
     <main id="beranda">
-      <!-- 2. HERO SECTION -->
-      <section class="py-12 sm:py-20 lg:py-24 hairline-b">
+      <!-- 2. HERO EDITORIAL SECTION -->
+      <section class="swiss-grid-bg py-14 sm:py-22 lg:py-28 hairline-b">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <div class="lg:col-span-7 space-y-6">
-              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full hairline-all bg-white dark:bg-gray-900 text-xs font-mono font-medium">
-                <span class="w-2 h-2 rounded-full bg-swissRed animate-pulse"></span>
-                <span id="heroBadgeText">Tersedia untuk Proyek &amp; Kolaborasi</span>
-              </div>
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 hairline-b">
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full hairline-all bg-white dark:bg-zinc-900 text-xs font-mono font-medium">
+              <span class="w-2 h-2 rounded-full bg-swissRed animate-pulse"></span>
+              <span id="heroBadgeText">Tersedia untuk Proyek &amp; Kolaborasi</span>
+            </div>
+            <div class="font-mono text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-3">
+              <span id="heroTopLocation">Depok, ID</span>
+              <span>•</span>
+              <span id="heroTopDomain" class="text-swissRed font-semibold">masbima.my.id</span>
+            </div>
+          </div>
 
-              <h1 id="heroHeadline" class="text-3xl sm:text-5xl lg:text-[3.35rem] font-extrabold tracking-tight leading-[1.12]">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            <div class="lg:col-span-8 space-y-6">
+              <h1 id="heroHeadline" class="text-3xl sm:text-5xl lg:text-[3.55rem] font-extrabold tracking-tight leading-[1.08]">
                 Halo, saya <span class="underline decoration-swissRed decoration-4 underline-offset-4">Arya Bima Rozak</span> — Frontend Developer &amp; Visual Designer
               </h1>
 
-              <p id="heroSubheadline" class="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
+              <p id="heroSubheadline" class="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
                 Saya merancang dan membangun website modern yang cepat, responsif, serta sistem visual yang rapi dan komunikatif. Menggabungkan latar belakang teknis Sistem Informasi dengan kepekaan desain editorial untuk menghasilkan solusi digital yang fungsional.
               </p>
 
-              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
                 <a
                   href="#proyek"
                   class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-swissRed hover:bg-rose-700 text-white text-sm font-semibold transition-colors"
                 >
-                  <span>Lihat Proyek</span>
+                  <span>Eksplorasi Karya</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </a>
                 <a
                   href="#kontak"
-                  class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg hairline-all bg-white dark:bg-gray-900 hover:border-gray-900 dark:hover:border-gray-200 text-sm font-semibold transition-colors"
+                  class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg hairline-all bg-white dark:bg-zinc-900 hover:border-zinc-900 dark:hover:border-zinc-200 text-sm font-semibold transition-colors"
                 >
-                  <span>Unduh CV / Kontak</span>
+                  <span>Ajukan Kolaborasi</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                   </svg>
                 </a>
               </div>
 
-              <div id="heroSocialLinks" class="pt-3 flex flex-wrap items-center gap-3"></div>
+              <div id="heroSocialLinks" class="pt-3 flex flex-wrap items-center gap-2.5"></div>
             </div>
 
-            <!-- Kolom Kanan: Kartu Profil -->
-            <div class="lg:col-span-5">
-              <div class="swiss-card rounded-2xl p-6 sm:p-7 relative overflow-hidden">
-                <div class="flex items-center justify-between pb-5 hairline-b">
-                  <span class="font-mono text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                    PROFIL PROFESIONAL
+            <!-- Kolom Kanan: Kartu Indeks Ringkas (Tanpa Data Sensitif) -->
+            <div class="lg:col-span-4">
+              <div class="swiss-card rounded-2xl p-6 relative overflow-hidden">
+                <div class="flex items-center justify-between pb-4 hairline-b">
+                  <span class="font-mono text-[11px] uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+                    INDEX / PROFIL
                   </span>
-                  <span id="cardDegreeBadge" class="px-2.5 py-1 rounded-md bg-rose-50 dark:bg-rose-950/50 text-swissRed font-mono text-xs font-semibold">
+                  <span id="cardDegreeBadge" class="px-2.5 py-0.5 rounded bg-rose-50 dark:bg-rose-950/60 text-swissRed font-mono text-xs font-semibold">
                     S.Kom • UBSI
                   </span>
                 </div>
 
-                <div class="my-6 flex items-center gap-5">
-                  <div id="cardAvatarWrapper" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex flex-col items-center justify-center shrink-0 relative overflow-hidden">
-                    <span class="font-mono text-[10px] tracking-widest text-swissRed font-semibold">PORTFOLIO</span>
-                    <span id="cardMonogram" class="text-2xl sm:text-3xl font-extrabold tracking-tighter">ABR</span>
+                <div class="my-5 flex items-center gap-4">
+                  <div id="cardAvatarWrapper" class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 flex flex-col items-center justify-center shrink-0 relative overflow-hidden">
+                    <span class="font-mono text-[9px] tracking-widest text-swissRed font-semibold">FOLIO</span>
+                    <span id="cardMonogram" class="text-xl sm:text-2xl font-extrabold tracking-tighter">ABR</span>
                   </div>
-                  <div>
-                    <h2 id="cardFullName" class="text-xl font-bold tracking-tight">Arya Bima Rozak</h2>
-                    <p id="cardRoleTitle" class="text-sm text-gray-600 dark:text-gray-300 mt-0.5">
-                      Web Developer &amp; Visual Designer
+                  <div class="min-w-0">
+                    <h2 id="cardFullName" class="text-lg font-bold tracking-tight truncate">Arya Bima Rozak</h2>
+                    <p id="cardRoleTitle" class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 mt-0.5 leading-snug">
+                      Frontend Developer &amp; Visual Designer
                     </p>
-                    <p id="cardDomainText" class="font-mono text-xs text-swissRed mt-1.5">
+                    <p id="cardDomainText" class="font-mono text-xs text-swissRed mt-1">
                       masbima.my.id
                     </p>
                   </div>
                 </div>
 
-                <div class="space-y-3 pt-4 hairline-t text-sm">
+                <div class="space-y-2.5 pt-4 hairline-t text-xs sm:text-sm">
                   <div class="flex items-center justify-between gap-2">
-                    <span class="text-gray-500 dark:text-gray-400 flex items-center gap-2">
-                      <svg class="w-4 h-4 text-swissRed" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                      </svg>
-                      Lokasi
-                    </span>
+                    <span class="text-zinc-500 dark:text-zinc-400 font-mono text-xs">BASIS</span>
                     <span id="cardLocationText" class="font-semibold text-right">Depok, Jawa Barat</span>
                   </div>
 
                   <div class="flex items-center justify-between gap-2">
-                    <span class="text-gray-500 dark:text-gray-400 flex items-center gap-2">
-                      <svg class="w-4 h-4 text-swissRed" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                      </svg>
-                      Pendidikan
-                    </span>
+                    <span class="text-zinc-500 dark:text-zinc-400 font-mono text-xs">AKADEMIK</span>
                     <span id="cardEducationText" class="font-semibold text-right">Sistem Informasi (UBSI)</span>
                   </div>
 
-                  <div class="pt-2">
-                    <span class="block text-xs font-mono uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">
-                      Tech Stack Utama
+                  <div class="pt-2.5">
+                    <span class="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
+                      Fokus Teknologi
                     </span>
                     <div id="cardPrimaryStack" class="flex flex-wrap gap-1.5"></div>
                   </div>
@@ -312,55 +314,16 @@
         </div>
       </section>
 
-      <!-- 3. TENTANG SAYA & STATISTIK -->
-      <section id="tentang" class="py-16 sm:py-24 hairline-b">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            <div class="lg:col-span-7 space-y-5">
-              <div class="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-widest text-swissRed">
-                <span>01 / TENTANG SAYA</span>
-              </div>
-              <h2 id="aboutHeading" class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
-                Menjembatani logika rekayasa web dengan estetika desain yang bersih.
-              </h2>
-              <p id="aboutParagraph1" class="text-base text-gray-600 dark:text-gray-300 leading-relaxed"></p>
-              <p id="aboutParagraph2" class="text-base text-gray-600 dark:text-gray-300 leading-relaxed"></p>
-            </div>
-
-            <div id="statsGrid" class="lg:col-span-5 grid grid-cols-2 gap-4"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. KEAHLIAN / TECH STACK -->
-      <section id="keahlian" class="py-16 sm:py-24 hairline-b">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="max-w-2xl mb-10 sm:mb-12">
-            <div class="font-mono text-xs font-semibold uppercase tracking-widest text-swissRed mb-2">
-              02 / KEAHLIAN &amp; TECH STACK
-            </div>
-            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
-              Perangkat dan Teknologi yang Saya Gunakan
-            </h2>
-            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-2">
-              Kombinasi teknologi pengembangan web modern, infrastruktur cloud, desain visual, dan pengolahan data operasional.
-            </p>
-          </div>
-
-          <div id="skillsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-        </div>
-      </section>
-
-      <!-- 5. PROYEK PILIHAN -->
+      <!-- 3. PROYEK PILIHAN (DIUTAMAKAN DI ATAS AGAR LANGSUNG FOKUS PADA KARYA) -->
       <section id="proyek" class="py-16 sm:py-24 hairline-b">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
             <div>
               <div class="font-mono text-xs font-semibold uppercase tracking-widest text-swissRed mb-2">
-                03 / PROYEK PILIHAN
+                01 / KARYA &amp; STUDI KASUS
               </div>
               <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
-                Karya &amp; Studi Kasus Terbaru
+                Proyek Pilihan &amp; Implementasi
               </h2>
             </div>
 
@@ -371,12 +334,51 @@
         </div>
       </section>
 
+      <!-- 4. KEAHLIAN / KAPABILITAS -->
+      <section id="keahlian" class="py-16 sm:py-24 hairline-b">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-2xl mb-10 sm:mb-12">
+            <div class="font-mono text-xs font-semibold uppercase tracking-widest text-swissRed mb-2">
+              02 / KAPABILITAS &amp; TECH STACK
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+              Perangkat dan Teknologi yang Saya Gunakan
+            </h2>
+            <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 mt-2">
+              Kombinasi teknologi pengembangan web modern, infrastruktur cloud, desain visual, dan pengolahan data operasional.
+            </p>
+          </div>
+
+          <div id="skillsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </div>
+      </section>
+
+      <!-- 5. TENTANG SAYA & STATISTIK -->
+      <section id="tentang" class="py-16 sm:py-24 hairline-b">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            <div class="lg:col-span-7 space-y-5">
+              <div class="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-widest text-swissRed">
+                <span>03 / PENDEKATAN &amp; PROFIL</span>
+              </div>
+              <h2 id="aboutHeading" class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                Menjembatani logika rekayasa web dengan estetika desain yang bersih.
+              </h2>
+              <p id="aboutParagraph1" class="text-base text-zinc-600 dark:text-zinc-300 leading-relaxed"></p>
+              <p id="aboutParagraph2" class="text-base text-zinc-600 dark:text-zinc-300 leading-relaxed"></p>
+            </div>
+
+            <div id="statsGrid" class="lg:col-span-5 grid grid-cols-2 gap-4"></div>
+          </div>
+        </div>
+      </section>
+
       <!-- 6. PENGALAMAN & PENDIDIKAN -->
       <section id="pengalaman" class="py-16 sm:py-24 hairline-b">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="max-w-2xl mb-12">
             <div class="font-mono text-xs font-semibold uppercase tracking-widest text-swissRed mb-2">
-              04 / PERJALANAN KARIER &amp; AKADEMIK
+              04 / REKAM JEJAK &amp; AKADEMIK
             </div>
             <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
               Pengalaman &amp; Pendidikan
@@ -389,47 +391,47 @@
                 <span class="w-2.5 h-2.5 rounded-full bg-swissRed"></span>
                 <span>Pengalaman Kerja &amp; Proyek</span>
               </h3>
-              <div id="experienceTimeline" class="relative pl-6 border-l border-gray-300 dark:border-gray-700 mt-6 space-y-8"></div>
+              <div id="experienceTimeline" class="relative pl-6 border-l border-zinc-300 dark:border-zinc-700 mt-6 space-y-8"></div>
             </div>
 
             <div>
               <h3 class="text-lg font-bold pb-4 hairline-b flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-gray-900 dark:bg-white"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-zinc-900 dark:bg-white"></span>
                 <span>Riwayat Pendidikan &amp; Kompetensi</span>
               </h3>
-              <div id="educationTimeline" class="relative pl-6 border-l border-gray-300 dark:border-gray-700 mt-6 space-y-8"></div>
+              <div id="educationTimeline" class="relative pl-6 border-l border-zinc-300 dark:border-zinc-700 mt-6 space-y-8"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 7. KONTAK -->
+      <!-- 7. KONTAK PROFESIONAL (TANPA NOMOR PRIBADI / WHATSAPP) -->
       <section id="kontak" class="py-16 sm:py-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
             <div class="lg:col-span-5 space-y-6">
               <div>
                 <div class="font-mono text-xs font-semibold uppercase tracking-widest text-swissRed mb-2">
-                  05 / HUBUNGI SAYA
+                  05 / KOLABORASI &amp; KONTAK
                 </div>
                 <h2 id="contactHeading" class="text-2xl sm:text-4xl font-extrabold tracking-tight">
                   Mari Berdiskusi &amp; Berkolaborasi
                 </h2>
-                <p id="contactSubheading" class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-3 leading-relaxed">
-                  Tertarik bekerja sama untuk pembuatan website, kebutuhan desain visual, atau peluang karier? Silakan hubungi saya melalui kontak langsung atau kirim pesan melalui formulir di samping.
+                <p id="contactSubheading" class="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 mt-3 leading-relaxed">
+                  Tertarik bekerja sama untuk pengembangan website, sistem informasi, atau kebutuhan desain visual? Silakan kirim pesan melalui formulir atau hubungi melalui kanal profesional berikut.
                 </p>
               </div>
 
               <div class="space-y-3 pt-2">
                 <div class="swiss-card rounded-xl p-4 flex items-center justify-between gap-3">
                   <div class="min-w-0">
-                    <span class="block font-mono text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400">Email Resmi</span>
+                    <span class="block font-mono text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Email Profesional</span>
                     <span id="contactEmailDisplay" class="block text-sm font-semibold truncate mt-0.5">aryabimarozak@gmail.com</span>
                   </div>
                   <button
                     id="copyEmailBtn"
                     type="button"
-                    class="shrink-0 px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors"
+                    class="shrink-0 px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-zinc-900 transition-colors"
                   >
                     Salin
                   </button>
@@ -437,13 +439,13 @@
 
                 <div class="swiss-card rounded-xl p-4 flex items-center justify-between gap-3">
                   <div class="min-w-0">
-                    <span class="block font-mono text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400">Website Portofolio</span>
+                    <span class="block font-mono text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Website Portofolio</span>
                     <span id="contactDomainDisplay" class="block text-sm font-semibold truncate mt-0.5 text-swissRed">masbima.my.id</span>
                   </div>
                   <button
                     id="copyDomainBtn"
                     type="button"
-                    class="shrink-0 px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors"
+                    class="shrink-0 px-3 py-1.5 rounded-lg hairline-all text-xs font-mono font-semibold hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-zinc-900 transition-colors"
                   >
                     Salin
                   </button>
@@ -451,38 +453,38 @@
 
                 <div class="swiss-card rounded-xl p-4 flex items-center justify-between gap-3">
                   <div>
-                    <span class="block font-mono text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400">WhatsApp</span>
-                    <span id="contactWaNote" class="block text-sm font-semibold mt-0.5">Respon Cepat (Jam Kerja WIB)</span>
+                    <span class="block font-mono text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Jejaring Profesional</span>
+                    <span id="contactSocialNote" class="block text-sm font-semibold mt-0.5">LinkedIn &amp; GitHub</span>
                   </div>
                   <a
-                    id="contactWaLink"
-                    href="https://wa.me/?text=Halo%20Arya%20Bima%20Rozak%2C%20saya%20tertarik%20berdiskusi%20mengenai%20proyek%2Fkolaborasi."
+                    id="contactLinkedinLink"
+                    href="https://linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="shrink-0 px-3 py-1.5 rounded-lg bg-swissRed text-white text-xs font-mono font-semibold hover:bg-rose-700 transition-colors"
+                    class="shrink-0 px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 text-xs font-mono font-semibold hover:bg-swissRed dark:hover:bg-swissRed dark:hover:text-white transition-colors"
                   >
-                    Chat ↗
+                    Profil ↗
                   </a>
                 </div>
 
                 <div class="swiss-card rounded-xl p-4">
-                  <span class="block font-mono text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400">Domisili</span>
-                  <span id="contactLocationDisplay" class="block text-sm font-semibold mt-0.5">Depok, Jawa Barat, Indonesia</span>
+                  <span class="block font-mono text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Wilayah Kerja</span>
+                  <span id="contactLocationDisplay" class="block text-sm font-semibold mt-0.5">Depok, Jawa Barat (Remote &amp; On-site)</span>
                 </div>
               </div>
             </div>
 
             <div class="lg:col-span-7">
               <div class="swiss-card rounded-2xl p-6 sm:p-8">
-                <h3 class="text-lg font-bold mb-1">Kirim Pesan Langsung</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
-                  Pesan Anda otomatis tersimpan ke kotak masuk Admin Panel (dan Supabase jika aktif).
+                <h3 class="text-lg font-bold mb-1">Formulir Pesan Proyek</h3>
+                <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-6">
+                  Sampaikan ringkasan kebutuhan Anda tanpa perlu membagikan nomor pribadi. Balasan akan dikirimkan ke alamat email Anda.
                 </p>
 
                 <form id="contactForm" class="space-y-4">
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label for="inputNama" class="block text-xs font-mono uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1.5">
+                      <label for="inputNama" class="block text-xs font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-300 mb-1.5">
                         Nama Lengkap *
                       </label>
                       <input
@@ -490,11 +492,11 @@
                         type="text"
                         required
                         placeholder="Masukkan nama Anda"
-                        class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
+                        class="w-full px-4 py-3 rounded-lg hairline-all bg-[#F7F7F5] dark:bg-zinc-900 text-sm focus:outline-none focus:border-swissRed"
                       />
                     </div>
                     <div>
-                      <label for="inputEmail" class="block text-xs font-mono uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1.5">
+                      <label for="inputEmail" class="block text-xs font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-300 mb-1.5">
                         Alamat Email *
                       </label>
                       <input
@@ -502,34 +504,34 @@
                         type="email"
                         required
                         placeholder="nama@perusahaan.com"
-                        class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
+                        class="w-full px-4 py-3 rounded-lg hairline-all bg-[#F7F7F5] dark:bg-zinc-900 text-sm focus:outline-none focus:border-swissRed"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label for="inputSubjek" class="block text-xs font-mono uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1.5">
-                      Subjek *
+                    <label for="inputSubjek" class="block text-xs font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-300 mb-1.5">
+                      Topik / Subjek *
                     </label>
                     <input
                       id="inputSubjek"
                       type="text"
                       required
-                      placeholder="Contoh: Pembuatan Website Perusahaan / Peluang Kerja"
-                      class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
+                      placeholder="Contoh: Kolaborasi Website / Kebutuhan Desain Visual"
+                      class="w-full px-4 py-3 rounded-lg hairline-all bg-[#F7F7F5] dark:bg-zinc-900 text-sm focus:outline-none focus:border-swissRed"
                     />
                   </div>
 
                   <div>
-                    <label for="inputPesan" class="block text-xs font-mono uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1.5">
-                      Pesan *
+                    <label for="inputPesan" class="block text-xs font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-300 mb-1.5">
+                      Detail Pesan *
                     </label>
                     <textarea
                       id="inputPesan"
                       rows="4"
                       required
-                      placeholder="Tuliskan detail kebutuhan proyek atau pesan Anda..."
-                      class="w-full px-4 py-3 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm focus:outline-none focus:border-swissRed"
+                      placeholder="Tuliskan ruang lingkup proyek atau pesan Anda..."
+                      class="w-full px-4 py-3 rounded-lg hairline-all bg-[#F7F7F5] dark:bg-zinc-900 text-sm focus:outline-none focus:border-swissRed"
                     ></textarea>
                   </div>
 
@@ -545,8 +547,8 @@
                         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                       </svg>
                     </button>
-                    <span class="text-xs text-gray-500 dark:text-gray-400">
-                      Email: <strong id="contactFooterEmailHint" class="font-mono">aryabimarozak@gmail.com</strong>
+                    <span class="text-xs text-zinc-500 dark:text-zinc-400">
+                      Korespondensi: <strong id="contactFooterEmailHint" class="font-mono">aryabimarozak@gmail.com</strong>
                     </span>
                   </div>
                 </form>
@@ -560,7 +562,7 @@
                     <a
                       id="mailtoFallbackLink"
                       href="mailto:aryabimarozak@gmail.com"
-                      class="px-3.5 py-1.5 rounded-lg bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-xs font-semibold"
+                      class="px-3.5 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 text-xs font-semibold"
                     >
                       Kirim Juga via Email ↗
                     </a>
@@ -580,18 +582,18 @@
       </section>
     </main>
 
-    <footer class="hairline-t py-8 bg-white dark:bg-[#0B0F19]">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+    <footer class="hairline-t py-8 bg-white dark:bg-[#0A0A0B]">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500 dark:text-zinc-400">
         <div class="flex items-center gap-2">
-          <span id="footerBrandText" class="font-extrabold text-gray-900 dark:text-white">Arya Bima<span class="text-swissRed">.</span></span>
+          <span id="footerBrandText" class="font-extrabold text-zinc-900 dark:text-white">Arya Bima<span class="text-swissRed">.</span></span>
           <span>•</span>
           <span id="footerCopyrightText">© 2026 Arya Bima Rozak. Hak cipta dilindungi.</span>
         </div>
 
         <div class="flex flex-wrap items-center gap-5 text-xs font-mono">
-          <a href="#tentang" class="hover:text-swissRed transition-colors">Tentang</a>
-          <a href="#keahlian" class="hover:text-swissRed transition-colors">Keahlian</a>
           <a href="#proyek" class="hover:text-swissRed transition-colors">Proyek</a>
+          <a href="#keahlian" class="hover:text-swissRed transition-colors">Keahlian</a>
+          <a href="#tentang" class="hover:text-swissRed transition-colors">Tentang</a>
           <a href="#pengalaman" class="hover:text-swissRed transition-colors">Pengalaman</a>
           <button type="button" onclick="openAdminView()" class="hover:text-swissRed transition-colors">Admin CMS</button>
           <a href="#beranda" class="text-swissRed font-semibold hover:underline">Ke Atas ↑</a>
@@ -721,8 +723,12 @@
                 <span>06. Kontak &amp; Pesan</span>
                 <span id="unreadMsgCountBadge" class="px-1.5 py-0.5 rounded bg-swissRed text-white font-mono text-[10px]">0</span>
               </button>
+              <button type="button" data-admin-tab="analytics" class="admin-nav-btn shrink-0 text-left px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-between gap-2">
+                <span>07. Trafik Pengunjung</span>
+                <span id="totalVisitsNavBadge" class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-700 font-mono text-[10px]">0</span>
+              </button>
               <button type="button" data-admin-tab="supabase" class="admin-nav-btn shrink-0 text-left px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-swissRed font-semibold">
-                07. Koneksi Supabase &amp; SQL
+                08. Koneksi Supabase &amp; SQL
               </button>
             </nav>
           </div>
@@ -974,12 +980,12 @@
                 <input id="editContactEmail" type="email" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-mono" />
               </div>
               <div>
-                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Nomor WhatsApp (Format 628xxx)</label>
-                <input id="editContactWaNumber" type="text" placeholder="6281234567890" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm font-mono" />
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Label Jejaring Profesional</label>
+                <input id="editContactSocialNote" type="text" placeholder="LinkedIn & GitHub" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
               </div>
               <div>
-                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Keterangan Respon WhatsApp</label>
-                <input id="editContactWaNote" type="text" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
+                <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Keterangan Wilayah Kerja</label>
+                <input id="editContactWorkArea" type="text" placeholder="Remote & On-site" class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[#FAFAFA] dark:bg-gray-900 text-sm" />
               </div>
               <div class="sm:col-span-2">
                 <label class="block font-mono text-xs uppercase text-gray-500 mb-1">Deskripsi Kontak</label>
@@ -1005,10 +1011,104 @@
             </div>
           </div>
 
-          <!-- TAB 07: KONEKSI SUPABASE & SETUP SQL -->
+          <!-- TAB 07: TRAFIK & ANALITIK PENGUNJUNG -->
+          <div id="tab-analytics" class="admin-tab-panel hidden swiss-panel rounded-2xl p-5 sm:p-7 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 hairline-b">
+              <div>
+                <span class="font-mono text-xs text-swissRed uppercase tracking-wider">MODUL 07 — ANALITIK</span>
+                <h2 class="text-xl font-extrabold">Statistik &amp; Trafik Pengunjung</h2>
+                <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  Pantau jumlah kunjungan halaman portofolio berdasarkan waktu, jenis perangkat, dan sumber rujukan.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="refreshAnalyticsDashboard()" class="px-3.5 py-2 rounded-lg hairline-all text-xs font-mono font-semibold hover:border-swissRed">
+                  Muat Ulang Data
+                </button>
+                <button type="button" onclick="resetTrafficStats()" class="px-3.5 py-2 rounded-lg hairline-all text-xs font-mono text-swissRed hover:border-swissRed">
+                  Reset Trafik
+                </button>
+              </div>
+            </div>
+
+            <!-- Kartu Metrik Utama -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              <div class="p-4 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900">
+                <span class="block font-mono text-[11px] uppercase text-gray-500">Hari Ini</span>
+                <span id="statVisitsToday" class="block text-2xl sm:text-3xl font-extrabold text-swissRed mt-1">0</span>
+                <span class="block text-[11px] text-gray-400 mt-0.5">Kunjungan</span>
+              </div>
+              <div class="p-4 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900">
+                <span class="block font-mono text-[11px] uppercase text-gray-500">7 Hari Terakhir</span>
+                <span id="statVisits7Days" class="block text-2xl sm:text-3xl font-extrabold mt-1">0</span>
+                <span class="block text-[11px] text-gray-400 mt-0.5">Kunjungan</span>
+              </div>
+              <div class="p-4 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900">
+                <span class="block font-mono text-[11px] uppercase text-gray-500">Total Kunjungan</span>
+                <span id="statVisitsTotal" class="block text-2xl sm:text-3xl font-extrabold mt-1">0</span>
+                <span class="block text-[11px] text-gray-400 mt-0.5">Semua waktu</span>
+              </div>
+              <div class="p-4 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900">
+                <span class="block font-mono text-[11px] uppercase text-gray-500">Mobile vs Desktop</span>
+                <span id="statDeviceRatio" class="block text-lg sm:text-xl font-extrabold mt-2 font-mono">0% / 0%</span>
+                <span class="block text-[11px] text-gray-400 mt-0.5">Rasio perangkat</span>
+              </div>
+            </div>
+
+            <!-- Grafik Batang 7 Hari Terakhir -->
+            <div class="p-4 sm:p-5 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900 space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-bold">Tren Kunjungan 7 Hari Terakhir</h3>
+                <span class="font-mono text-[11px] text-gray-400">Harian</span>
+              </div>
+              <div id="analyticsBarChart" class="grid grid-cols-7 gap-2 sm:gap-3 items-end h-40 pt-4"></div>
+            </div>
+
+            <!-- Ringkasan Negara & Wilayah Asal Pengunjung -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 sm:p-5 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900 space-y-3">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-sm font-bold">Negara Asal Pengunjung</h3>
+                  <span class="font-mono text-[11px] text-gray-400">Top Negara</span>
+                </div>
+                <div id="analyticsCountryList" class="space-y-2.5 text-xs"></div>
+              </div>
+
+              <div class="p-4 sm:p-5 rounded-xl hairline-all bg-[#FAFAFA] dark:bg-gray-900 space-y-3">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-sm font-bold">Kota / Wilayah Teratas</h3>
+                  <span class="font-mono text-[11px] text-gray-400">Geo-Lokasi</span>
+                </div>
+                <div id="analyticsCityList" class="space-y-2.5 text-xs"></div>
+              </div>
+            </div>
+
+            <!-- Log Kunjungan Terbaru -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-bold">Log Kunjungan Terbaru (20 Terakhir)</h3>
+                <span class="font-mono text-[11px] text-gray-400">Detail Lokasi &amp; Perangkat</span>
+              </div>
+              <div class="overflow-x-auto rounded-xl hairline-all">
+                <table class="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr class="hairline-b bg-[#FAFAFA] dark:bg-gray-900 font-mono text-[11px] uppercase text-gray-500">
+                      <th class="py-2.5 px-3.5">Waktu</th>
+                      <th class="py-2.5 px-3.5">Asal (Kota, Negara)</th>
+                      <th class="py-2.5 px-3.5">Perangkat &amp; OS</th>
+                      <th class="py-2.5 px-3.5">Sumber / Referrer</th>
+                    </tr>
+                  </thead>
+                  <tbody id="analyticsLogTableBody" class="divide-y divide-zinc-200 dark:divide-zinc-800"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 08: KONEKSI SUPABASE & SETUP SQL -->
           <div id="tab-supabase" class="admin-tab-panel hidden swiss-panel rounded-2xl p-5 sm:p-7 space-y-6">
             <div class="pb-4 hairline-b">
-              <span class="font-mono text-xs text-swissRed uppercase tracking-wider">MODUL 07 — INTEGRASI CLOUD</span>
+              <span class="font-mono text-xs text-swissRed uppercase tracking-wider">MODUL 08 — INTEGRASI CLOUD</span>
               <h2 class="text-xl font-extrabold">Konfigurasi Database Supabase &amp; Skema SQL</h2>
               <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
                 Hubungkan proyek Supabase Anda agar seluruh perubahan di Admin Panel tersimpan online secara real-time dan dapat diakses dari perangkat mana pun.
@@ -1095,11 +1195,35 @@ CREATE TABLE IF NOT EXISTS public.portfolio_messages (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- 3. Aktifkan Row Level Security (RLS)
+-- 3. Tabel analitik & trafik kunjungan
+CREATE TABLE IF NOT EXISTS public.portfolio_visits (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  device_type TEXT NOT NULL,
+  os_browser TEXT,
+  city TEXT,
+  region TEXT,
+  country TEXT,
+  country_code TEXT,
+  timezone TEXT,
+  screen_size TEXT,
+  referrer TEXT,
+  visited_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- Jika tabel portfolio_visits sudah terlanjur dibuat sebelumnya, jalankan ALTER berikut:
+ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS os_browser TEXT;
+ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS city TEXT;
+ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS region TEXT;
+ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS country TEXT;
+ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS country_code TEXT;
+ALTER TABLE public.portfolio_visits ADD COLUMN IF NOT EXISTS timezone TEXT;
+
+-- 4. Aktifkan Row Level Security (RLS)
 ALTER TABLE public.portfolio_state ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.portfolio_messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.portfolio_visits ENABLE ROW LEVEL SECURITY;
 
--- 4. Kebijakan akses publik & admin terautentikasi
+-- 5. Kebijakan akses publik & admin terautentikasi
 CREATE POLICY "Publik bisa membaca konten portofolio"
   ON public.portfolio_state FOR SELECT USING (true);
 
@@ -1113,6 +1237,13 @@ CREATE POLICY "Publik bisa mengirim pesan kontak"
 
 CREATE POLICY "Admin bisa kelola pesan kontak"
   ON public.portfolio_messages FOR ALL
+  USING (auth.role() = 'authenticated');
+
+CREATE POLICY "Publik bisa mencatat kunjungan"
+  ON public.portfolio_visits FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Admin bisa membaca trafik kunjungan"
+  ON public.portfolio_visits FOR SELECT
   USING (auth.role() = 'authenticated');</pre>
             </div>
 
@@ -1336,6 +1467,8 @@ CREATE POLICY "Admin bisa kelola pesan kontak"
     const STORAGE_KEYS = {
       DATA: 'aryabima_portfolio_cms_v1',
       MESSAGES: 'aryabima_portfolio_messages_v1',
+      VISITS: 'aryabima_portfolio_visits_v1',
+      VISIT_SESSION: 'aryabima_visit_recorded_v1',
       SB_CREDS: 'aryabima_supabase_creds_v1',
       ADMIN_SESSION: 'aryabima_admin_session_v1',
       THEME: 'aryabima_theme'
@@ -1516,10 +1649,10 @@ CREATE POLICY "Admin bisa kelola pesan kontak"
       },
       contact: {
         heading: 'Mari Berdiskusi & Berkolaborasi',
-        subheading: 'Tertarik bekerja sama untuk pembuatan website, kebutuhan desain visual, atau peluang karier? Silakan hubungi saya melalui kontak langsung atau kirim pesan melalui formulir di samping.',
+        subheading: 'Tertarik bekerja sama untuk pengembangan website, sistem informasi, atau kebutuhan desain visual? Silakan kirim pesan melalui formulir atau hubungi melalui kanal profesional berikut.',
         email: 'aryabimarozak@gmail.com',
-        waNumber: '6281234567890',
-        waNote: 'Respon Cepat (Jam Kerja WIB)',
+        socialNote: 'LinkedIn & GitHub',
+        workArea: 'Remote & On-site',
         footerCopyright: '© 2026 Arya Bima Rozak. Hak cipta dilindungi.'
       }
     };
@@ -1911,6 +2044,8 @@ CREATE POLICY "Admin bisa kelola pesan kontak"
       // Brand & Hero
       document.getElementById('navBrandLogo').innerHTML = `${escapeHtml(p.brandName)}<span class="text-swissRed">.</span>`;
       document.getElementById('heroBadgeText').textContent = p.badgeText;
+      document.getElementById('heroTopLocation').textContent = p.location;
+      document.getElementById('heroTopDomain').textContent = p.domain;
 
       const safeFullName = escapeHtml(p.fullName);
       const rawHeadline = escapeHtml(p.heroHeadline);
@@ -2013,14 +2148,11 @@ CREATE POLICY "Admin bisa kelola pesan kontak"
       document.getElementById('contactEmailDisplay').textContent = c.email;
       document.getElementById('contactFooterEmailHint').textContent = c.email;
       document.getElementById('contactDomainDisplay').textContent = p.domain;
-      document.getElementById('contactWaNote').textContent = c.waNote;
-      document.getElementById('contactLocationDisplay').textContent = `${p.location}, Indonesia`;
+      document.getElementById('contactSocialNote').textContent = c.socialNote || 'LinkedIn & GitHub';
+      document.getElementById('contactLinkedinLink').href = p.linkedinUrl || 'https://linkedin.com';
+      document.getElementById('contactLocationDisplay').textContent = `${p.location} (${c.workArea || 'Remote & On-site'})`;
       document.getElementById('footerBrandText').innerHTML = `${escapeHtml(p.brandName)}<span class="text-swissRed">.</span>`;
       document.getElementById('footerCopyrightText').textContent = c.footerCopyright;
-
-      const waClean = (c.waNumber || '').replace(/[^0-9]/g, '');
-      const waMsg = encodeURIComponent(`Halo ${p.fullName}, saya tertarik berdiskusi mengenai proyek/kolaborasi.`);
-      document.getElementById('contactWaLink').href = waClean ? `https://wa.me/${waClean}?text=${waMsg}` : `https://wa.me/?text=${waMsg}`;
     }
 
     function getCategoryLabel(cat) {
@@ -2244,6 +2376,7 @@ CREATE POLICY "Admin bisa kelola pesan kontak"
       document.getElementById('adminLogoutBtn').classList.remove('hidden');
       populateAllAdminForms();
       refreshInboxMessages();
+      refreshAnalyticsDashboard();
     }
 
     function enterDemoAdminMode() {
@@ -2314,6 +2447,7 @@ CREATE POLICY "Admin bisa kelola pesan kontak"
         document.querySelectorAll('.admin-tab-panel').forEach((panel) => panel.classList.add('hidden'));
         const activePanel = document.getElementById(`tab-${target}`);
         if (activePanel) activePanel.classList.remove('hidden');
+        if (target === 'analytics') refreshAnalyticsDashboard();
       });
     });
 
@@ -2367,8 +2501,8 @@ CREATE POLICY "Admin bisa kelola pesan kontak"
       // Tab 06
       document.getElementById('editContactHeading').value = c.heading || '';
       document.getElementById('editContactEmail').value = c.email || '';
-      document.getElementById('editContactWaNumber').value = c.waNumber || '';
-      document.getElementById('editContactWaNote').value = c.waNote || '';
+      document.getElementById('editContactSocialNote').value = c.socialNote || 'LinkedIn & GitHub';
+      document.getElementById('editContactWorkArea').value = c.workArea || 'Remote & On-site';
       document.getElementById('editContactSubheading').value = c.subheading || '';
       document.getElementById('editFooterCopyright').value = c.footerCopyright || '';
 
@@ -2654,8 +2788,8 @@ CREATE POLICY "Admin bisa kelola pesan kontak"
         ...portfolioData.contact,
         heading: document.getElementById('editContactHeading').value.trim(),
         email: document.getElementById('editContactEmail').value.trim(),
-        waNumber: document.getElementById('editContactWaNumber').value.trim(),
-        waNote: document.getElementById('editContactWaNote').value.trim(),
+        socialNote: document.getElementById('editContactSocialNote').value.trim(),
+        workArea: document.getElementById('editContactWorkArea').value.trim(),
         subheading: document.getElementById('editContactSubheading').value.trim(),
         footerCopyright: document.getElementById('editFooterCopyright').value.trim()
       };
@@ -2787,6 +2921,326 @@ CREATE POLICY "Admin bisa kelola pesan kontak"
     }
 
     // =========================================================================
+    // PELACAK & ANALITIK TRAFIK PENGUNJUNG
+    // =========================================================================
+    function getCountryFlagEmoji(countryCode) {
+      if (!countryCode || countryCode.length !== 2) return '🌐';
+      const codePoints = countryCode
+        .toUpperCase()
+        .split('')
+        .map((char) => 127397 + char.charCodeAt(0));
+      return String.fromCodePoint(...codePoints);
+    }
+
+    function detectOsAndBrowser(ua) {
+      let os = 'Unknown OS';
+      if (/Windows/i.test(ua)) os = 'Windows';
+      else if (/Android/i.test(ua)) os = 'Android';
+      else if (/iPhone|iPad|iPod/i.test(ua)) os = 'iOS';
+      else if (/Mac OS X/i.test(ua)) os = 'macOS';
+      else if (/Linux/i.test(ua)) os = 'Linux';
+
+      let browser = 'Browser';
+      if (/Edg\//i.test(ua)) browser = 'Edge';
+      else if (/OPR\/|Opera/i.test(ua)) browser = 'Opera';
+      else if (/Chrome\//i.test(ua) && !/Edg\//i.test(ua)) browser = 'Chrome';
+      else if (/Safari\//i.test(ua) && !/Chrome\//i.test(ua)) browser = 'Safari';
+      else if (/Firefox\//i.test(ua)) browser = 'Firefox';
+
+      return `${browser} • ${os}`;
+    }
+
+    async function fetchVisitorGeoInfo() {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      const fallbackCity = tz.includes('/') ? tz.split('/')[1].replace(/_/g, ' ') : 'Tidak Diketahui';
+      const fallbackCountry = tz.startsWith('Asia/Jakarta') || tz.startsWith('Asia/Makassar') || tz.startsWith('Asia/Jayapura') ? 'Indonesia' : 'Global';
+      const fallbackCode = fallbackCountry === 'Indonesia' ? 'ID' : '';
+
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 3500);
+        const res = await fetch('https://ipapi.co/json/', { signal: controller.signal });
+        clearTimeout(timer);
+        if (res.ok) {
+          const geo = await res.json();
+          if (geo && !geo.error) {
+            return {
+              city: geo.city || fallbackCity,
+              region: geo.region || '',
+              country: geo.country_name || fallbackCountry,
+              country_code: (geo.country_code || fallbackCode).toUpperCase(),
+              timezone: geo.timezone || tz
+            };
+          }
+        }
+      } catch (e) {}
+
+      try {
+        const res2 = await fetch('https://get.geojs.io/v1/ip/geo.json');
+        if (res2.ok) {
+          const geo2 = await res2.json();
+          return {
+            city: geo2.city || fallbackCity,
+            region: geo2.region || '',
+            country: geo2.country || fallbackCountry,
+            country_code: (geo2.country_code || fallbackCode).toUpperCase(),
+            timezone: geo2.timezone || tz
+          };
+        }
+      } catch (e) {}
+
+      return {
+        city: fallbackCity,
+        region: '',
+        country: fallbackCountry,
+        country_code: fallbackCode,
+        timezone: tz
+      };
+    }
+
+    async function trackVisitorHit() {
+      // Hindari penghitungan ganda saat refresh dalam sesi tab yang sama, dan abaikan akses langsung ke #admin
+      if (window.location.hash === '#admin') return;
+      if (sessionStorage.getItem(STORAGE_KEYS.VISIT_SESSION) === 'true') return;
+      sessionStorage.setItem(STORAGE_KEYS.VISIT_SESSION, 'true');
+
+      const ua = navigator.userAgent || '';
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) || window.innerWidth < 768;
+      const deviceType = isMobile ? 'Mobile' : 'Desktop';
+      const osBrowser = detectOsAndBrowser(ua);
+      const screenSize = `${window.innerWidth}×${window.innerHeight}`;
+      let referrerLabel = 'Langsung (Direct)';
+      if (document.referrer) {
+        try {
+          referrerLabel = new URL(document.referrer).hostname || document.referrer;
+        } catch (e) {
+          referrerLabel = document.referrer;
+        }
+      }
+
+      const geo = await fetchVisitorGeoInfo();
+
+      const visitEntry = {
+        id: 'vis-' + Date.now(),
+        device_type: deviceType,
+        os_browser: osBrowser,
+        city: geo.city,
+        region: geo.region,
+        country: geo.country,
+        country_code: geo.country_code,
+        timezone: geo.timezone,
+        screen_size: screenSize,
+        referrer: referrerLabel,
+        visited_at: new Date().toISOString()
+      };
+
+      try {
+        const localVisits = JSON.parse(localStorage.getItem(STORAGE_KEYS.VISITS) || '[]');
+        localVisits.unshift(visitEntry);
+        localStorage.setItem(STORAGE_KEYS.VISITS, JSON.stringify(localVisits.slice(0, 500)));
+      } catch (e) {}
+
+      if (supabaseClient && isSupabaseConnected) {
+        try {
+          await supabaseClient.from('portfolio_visits').insert({
+            device_type: deviceType,
+            os_browser: osBrowser,
+            city: geo.city,
+            region: geo.region,
+            country: geo.country,
+            country_code: geo.country_code,
+            timezone: geo.timezone,
+            screen_size: screenSize,
+            referrer: referrerLabel
+          });
+        } catch (err) {
+          console.warn('Supabase visit insert notice:', err);
+        }
+      }
+    }
+
+    async function refreshAnalyticsDashboard() {
+      let visits = [];
+      try {
+        visits = JSON.parse(localStorage.getItem(STORAGE_KEYS.VISITS) || '[]');
+      } catch (e) {}
+
+      if (supabaseClient && isSupabaseConnected && isSupabaseAuthenticated) {
+        try {
+          const { data, error } = await supabaseClient
+            .from('portfolio_visits')
+            .select('*')
+            .order('visited_at', { ascending: false })
+            .limit(500);
+          if (!error && Array.isArray(data)) {
+            visits = data;
+            localStorage.setItem(STORAGE_KEYS.VISITS, JSON.stringify(data));
+          }
+        } catch (err) {}
+      }
+
+      const totalCount = visits.length;
+      const navBadge = document.getElementById('totalVisitsNavBadge');
+      if (navBadge) navBadge.textContent = totalCount;
+
+      const now = new Date();
+      const todayKey = now.toISOString().slice(0, 10);
+      const sevenDaysAgo = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000);
+      sevenDaysAgo.setHours(0, 0, 0, 0);
+
+      let todayCount = 0;
+      let last7DaysCount = 0;
+      let mobileCount = 0;
+      let desktopCount = 0;
+
+      const countryMap = {};
+      const cityMap = {};
+
+      // Siapkan 7 slot hari terakhir
+      const dailyBuckets = [];
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
+        const key = d.toISOString().slice(0, 10);
+        const label = d.toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric' });
+        dailyBuckets.push({ key, label, count: 0 });
+      }
+
+      visits.forEach((v) => {
+        const dt = new Date(v.visited_at);
+        if (isNaN(dt.getTime())) return;
+        const dKey = dt.toISOString().slice(0, 10);
+
+        if (dKey === todayKey) todayCount++;
+        if (dt >= sevenDaysAgo) last7DaysCount++;
+
+        if ((v.device_type || '').toLowerCase() === 'mobile') {
+          mobileCount++;
+        } else {
+          desktopCount++;
+        }
+
+        const cName = v.country || 'Tidak Diketahui';
+        const cCode = v.country_code || '';
+        const cKey = `${cName}|${cCode}`;
+        countryMap[cKey] = (countryMap[cKey] || 0) + 1;
+
+        const cityLabel = v.city
+          ? `${v.city}${v.region ? ', ' + v.region : ''} (${cCode || cName})`
+          : cName;
+        cityMap[cityLabel] = (cityMap[cityLabel] || 0) + 1;
+
+        const bucket = dailyBuckets.find((b) => b.key === dKey);
+        if (bucket) bucket.count++;
+      });
+
+      const mobilePct = totalCount ? Math.round((mobileCount / totalCount) * 100) : 0;
+      const desktopPct = totalCount ? 100 - mobilePct : 0;
+
+      document.getElementById('statVisitsToday').textContent = todayCount;
+      document.getElementById('statVisits7Days').textContent = last7DaysCount;
+      document.getElementById('statVisitsTotal').textContent = totalCount;
+      document.getElementById('statDeviceRatio').textContent = `${mobilePct}% / ${desktopPct}%`;
+
+      // Render grafik batang 7 hari
+      const maxBucket = Math.max(...dailyBuckets.map((b) => b.count), 1);
+      document.getElementById('analyticsBarChart').innerHTML = dailyBuckets.map((b) => {
+        const heightPct = Math.max(Math.round((b.count / maxBucket) * 100), 6);
+        const isToday = b.key === todayKey;
+        return `
+          <div class="flex flex-col items-center justify-end h-full gap-1.5">
+            <span class="font-mono text-[11px] font-bold ${isToday ? 'text-swissRed' : ''}">${b.count}</span>
+            <div class="w-full max-w-[36px] rounded-t-md transition-all ${isToday ? 'bg-swissRed' : 'bg-zinc-800 dark:bg-zinc-200'}" style="height: ${heightPct}%;"></div>
+            <span class="font-mono text-[10px] text-gray-500 text-center truncate w-full">${escapeHtml(b.label)}</span>
+          </div>
+        `;
+      }).join('');
+
+      // Render daftar Negara Asal Pengunjung
+      const sortedCountries = Object.entries(countryMap).sort((a, b) => b[1] - a[1]).slice(0, 6);
+      const countryListEl = document.getElementById('analyticsCountryList');
+      if (!sortedCountries.length) {
+        countryListEl.innerHTML = `<p class="font-mono text-gray-400">Belum ada data negara pengunjung.</p>`;
+      } else {
+        countryListEl.innerHTML = sortedCountries.map(([key, count]) => {
+          const [name, code] = key.split('|');
+          const pct = totalCount ? Math.round((count / totalCount) * 100) : 0;
+          return `
+            <div class="space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-medium">${getCountryFlagEmoji(code)} ${escapeHtml(name)}</span>
+                <span class="font-mono text-[11px] font-semibold">${count} <span class="text-gray-400">(${pct}%)</span></span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden">
+                <div class="h-full bg-swissRed rounded-full" style="width: ${pct}%"></div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Render daftar Kota / Wilayah Teratas
+      const sortedCities = Object.entries(cityMap).sort((a, b) => b[1] - a[1]).slice(0, 6);
+      const cityListEl = document.getElementById('analyticsCityList');
+      if (!sortedCities.length) {
+        cityListEl.innerHTML = `<p class="font-mono text-gray-400">Belum ada data wilayah pengunjung.</p>`;
+      } else {
+        cityListEl.innerHTML = sortedCities.map(([cityName, count]) => {
+          const pct = totalCount ? Math.round((count / totalCount) * 100) : 0;
+          return `
+            <div class="space-y-1">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-medium truncate">${escapeHtml(cityName)}</span>
+                <span class="font-mono text-[11px] font-semibold shrink-0">${count} <span class="text-gray-400">(${pct}%)</span></span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden">
+                <div class="h-full bg-zinc-800 dark:bg-zinc-200 rounded-full" style="width: ${pct}%"></div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Render tabel log kunjungan terbaru
+      const tbody = document.getElementById('analyticsLogTableBody');
+      const recent = visits.slice(0, 20);
+      if (!recent.length) {
+        tbody.innerHTML = `<tr><td colspan="4" class="py-5 px-4 text-center font-mono text-gray-400">Belum ada data kunjungan tercatat.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = recent.map((v) => {
+        const flag = getCountryFlagEmoji(v.country_code);
+        const locationParts = [v.city, v.region, v.country].filter(Boolean);
+        const fullLocation = locationParts.length ? locationParts.join(', ') : 'Lokasi Tidak Diketahui';
+        return `
+          <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-900/60">
+            <td class="py-2.5 px-3.5 font-mono text-[11px] whitespace-nowrap">${new Date(v.visited_at).toLocaleString('id-ID')}</td>
+            <td class="py-2.5 px-3.5">
+              <div class="font-semibold text-gray-900 dark:text-gray-100">${flag} ${escapeHtml(fullLocation)}</div>
+              <div class="font-mono text-[10px] text-gray-400">${escapeHtml(v.timezone || '')}</div>
+            </td>
+            <td class="py-2.5 px-3.5">
+              <span class="px-2 py-0.5 rounded font-mono text-[10px] font-semibold ${
+                (v.device_type || '').toLowerCase() === 'mobile'
+                  ? 'bg-rose-50 dark:bg-rose-950/60 text-swissRed'
+                  : 'bg-zinc-100 dark:bg-zinc-800'
+              }">${escapeHtml(v.device_type || 'Desktop')}</span>
+              <span class="block font-mono text-[10px] text-gray-500 mt-0.5">${escapeHtml(v.os_browser || v.screen_size || '')}</span>
+            </td>
+            <td class="py-2.5 px-3.5 text-gray-600 dark:text-gray-300 truncate max-w-[160px]">${escapeHtml(v.referrer || 'Direct')}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function resetTrafficStats() {
+      localStorage.removeItem(STORAGE_KEYS.VISITS);
+      sessionStorage.removeItem(STORAGE_KEYS.VISIT_SESSION);
+      refreshAnalyticsDashboard();
+      showToast('Data trafik lokal telah direset.');
+    }
+
+    // =========================================================================
     // GLOBAL KEYBOARD SHORTCUTS & INITIALIZATION
     // =========================================================================
     document.addEventListener('keydown', (e) => {
@@ -2802,6 +3256,7 @@ CREATE POLICY "Admin bisa kelola pesan kontak"
       renderAllPublicSections();
 
       await initSupabaseConnection(true);
+      await trackVisitorHit();
 
       if (window.location.hash === '#admin') {
         openAdminView();
